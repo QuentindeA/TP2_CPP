@@ -1,12 +1,12 @@
 /*******************************************************************************
-                           TrajetSimple  -  description
+                           Catalogue  -  description
                              -------------------
     début                : 20/11/2019
     copyright            : (C) 2019 par Louis ROB et Quentin DE ANDRIA
     e-mail               : louis.rob@insa-lyon.fr quentin.de-andria@insa-lyon.fr
 *******************************************************************************/
 
-//------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ---
+//-------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ----------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,35 +15,40 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "TrajetSimple.h"
+#include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void TrajetSimple::Afficher ( ) const
-{
-    Trajet::Afficher();
-    cout << "en" << mean << endl;
-} //----- Fin de Afficher
-
+// type Catalogue::Méthode ( liste des paramètres )
+// Algorithme :
+//
+//{
+//} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple ( const char* startPoint, const char* endPoint, 
-                             const char* transportMean )
-                            : Trajet ( startPoint, endPoint),
-                            mean ( transportMean )
+Catalogue::Catalogue ( )
+// Algorithme :
+//
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+    cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de TrajetSimple (constructeur de copie)
+} //----- Fin de Catalogue
 
 
-TrajetSimple::~TrajetSimple ( )
+Catalogue::~Catalogue ( )
+// Algorithme :
+//
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <TrajetSimple>" << endl;
+    cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-} //----- Fin de ~TrajetSimple
+} //----- Fin de ~Catalogue
+
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées

@@ -1,52 +1,60 @@
 /*******************************************************************************
-                           TrajetSimple  -  description
+                           Catalogue  -  description
                              -------------------
     début                : 20/11/2019
     copyright            : (C) 2019 par Louis ROB et Quentin DE ANDRIA
     e-mail               : louis.rob@insa-lyon.fr quentin.de-andria@insa-lyon.fr
 *******************************************************************************/
 
-//------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) -------
-#if ! defined ( TRAJET_SIMPLE_H )
-#define TRAJET_SIMPLE_H
+//---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------
+#if ! defined ( CATALOGUE_H )
+#define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetSimple>
-// La classe TrajetSimple permet de créer des trajets simples à partir d'un
-// départ, d'une arrivée et d'un moyen de transport
+// Rôle de la classe <Catalogue>
+// Permet de créer une liste de trajets disponibles et d'ajouter des trajets
+// possibles dans cette liste
 //------------------------------------------------------------------------
 
-class TrajetSimple : public Trajet
+class Catalogue 
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Afficher ( ) const;
-    
-//-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple ( const char* startPoint, const char* endPoint, 
-                   const char* transportMean );
-    
-    virtual ~TrajetSimple ( );
+    // type Méthode ( liste des paramètres );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
+//-------------------------------------------- Constructeurs - destructeur
+    Catalogue ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Catalogue ( );
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    const char * mean;
+
+private:
+//------------------------------------------------------- Attributs privés
+    Trajet* listTrajet;
+    unsigned int nbTrajet;
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
+//-------------------------------- Autres définitions dépendantes de <Catalogue>
 
-#endif // TRAJET_SIMPLE_H
-
+#endif // CATALOGUE_H
