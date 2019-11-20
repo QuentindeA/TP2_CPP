@@ -25,7 +25,7 @@ using namespace std;
 void TrajetSimple::Afficher ( ) const
 {
     Trajet::Afficher();
-    cout << "en" << mean << endl;
+    cout << " en " << mean << endl;
 } //----- Fin de Afficher
 
 

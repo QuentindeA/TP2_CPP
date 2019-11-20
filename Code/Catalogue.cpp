@@ -32,6 +32,14 @@ void Catalogue::Afficher ( ) const
 // Algorithme :
 //
 {
+    unsigned int i;
+    
+    cout << "Trajets disponibles dans le catalogue : " << endl;
+    
+    for ( i = 0; i < nbTrajet; i++ )
+    {
+        listTrajet[i].Afficher();
+    }
 } //----- Fin de Méthode
 
 void Catalogue::Find ( const char * startPoint, const char * endPoint ) const
