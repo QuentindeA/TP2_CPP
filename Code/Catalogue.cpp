@@ -22,11 +22,23 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Catalogue::Méthode ( liste des paramètres )
+void Catalogue::AddTrajet ( const Trajet * )
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+} //----- Fin de Méthode
+
+void Catalogue::Afficher ( ) const
+// Algorithme :
+//
+{
+} //----- Fin de Méthode
+
+void Catalogue::Find ( const char * startPoint, const char * endPoint ) const
+// Algorithme :
+//
+{
+} //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ( )
@@ -36,6 +48,10 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
+    
+    listTrajet = 0;
+    nbTrajet = 0;
+    
 } //----- Fin de Catalogue
 
 

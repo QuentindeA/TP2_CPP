@@ -5,11 +5,13 @@ CFLAGS = -Wall -Werror -ansi -pedantic -std=c++11 -DMAP
 
 LIBS += -lpthread
 
-PROG = Trajet.o TrajetSimple.o TrajetCompose.o
+PROG = Catalogue.o Trajet.o TrajetSimple.o TrajetCompose.o
 
 
 all: $(PROG)
 
+Catalogue.o: Catalogue.cpp Catalogue.h
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 Trajet.o: Trajet.cpp Trajet.h
 	$(CC) $(CFLAGS) -c -o $@ $<

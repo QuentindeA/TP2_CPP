@@ -11,6 +11,7 @@
 #define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -28,7 +29,19 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    void AddTrajet ( const Trajet* );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    
+    void Afficher ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    
+    void Find ( const char * startPoint, const char * endPoint ) const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -42,6 +55,11 @@ public:
     //
 
     virtual ~Catalogue ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    
 //------------------------------------------------------------------ PRIVE
 
 protected:
