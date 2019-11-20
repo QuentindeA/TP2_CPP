@@ -11,7 +11,8 @@
 #define TRAJET_COMPOSE_H
 
 //--------------------------------------------------- Interfaces utilisées
-include "Trajet.h";
+#include "Trajet.h"
+#include "TrajetSimple.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -37,7 +38,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetCompose ( const Trajet * list, const unsigned int sizeList );
+    TrajetCompose ( const TrajetSimple * list, const unsigned int sizeList );
     // Mode d'emploi :
     //
     // Contrat :
@@ -56,7 +57,7 @@ protected:
 
 
 //----------------------------------------------------- Attributs protégés
-    const Trajet * listTrajet;
+    const TrajetSimple * listTrajet;
     const unsigned int nbTrajet;
 
 };
