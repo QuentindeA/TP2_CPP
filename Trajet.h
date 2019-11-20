@@ -28,14 +28,26 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual const char * GetStart ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual const char * GetEnd ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual void Afficher ( ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    virtual Trajet (const char * startPoint, const char * endPoint);
+    Trajet (const char * startPoint, const char * endPoint);
     // Mode d'emploi :
     //
     // Contrat :
@@ -46,24 +58,7 @@ public:
     //
     // Contrat :
     //
-    
-    char * GetStart ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
-    char * GetEnd ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void Afficher ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
     
 
 //------------------------------------------------------------------ PRIVE

@@ -1,4 +1,22 @@
+.PHONY: all, clean
 
--D MAP
+CC = g++
+CFLAGS = -Wall -Werror -ansi -pedantic -std=c++11 -DMAP
 
-g++ -ansi -pedantic –Wall –std=c++11
+LIBS += -lpthread
+
+PROG = Trajet.o
+
+
+all: $(PROG)
+
+
+Trajet.o: Trajet.cpp Trajet.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+Trajet: Trajet.o
+	$(CC) -o $@ $^ $(LIBS)
+
+clean:
+	rm -f $(PROGS) *.o
+
