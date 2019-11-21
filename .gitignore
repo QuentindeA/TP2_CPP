@@ -2,3 +2,6 @@ Code/*~
 Code/*.o
 Tests/*.o
 Tests/*~
+.*
+Code/.*
+Docs/.*
