@@ -30,11 +30,11 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
-    
+
 //-------------------------------------------- Constructeurs - destructeur
-    TrajetSimple ( const char* startPoint, const char* endPoint, 
+    TrajetSimple ( const char* startPoint, const char* endPoint,
                    const char* transportMean );
-    
+
     virtual ~TrajetSimple ( );
 
 //------------------------------------------------------------------ PRIVE
@@ -43,10 +43,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    const char * mean;
+    char * mean;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetSimple>
 
 #endif // TRAJET_SIMPLE_H
-

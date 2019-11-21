@@ -22,7 +22,7 @@
 //
 //------------------------------------------------------------------------
 
-class Trajet 
+class Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -59,18 +59,17 @@ public:
     // Contrat :
     //
 
-    
+
 
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Attributs protégés
-    const char * start;
-    const char * end;
+    char * start;
+    char * end;
 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H
-

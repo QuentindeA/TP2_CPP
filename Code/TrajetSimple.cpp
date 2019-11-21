@@ -12,6 +12,8 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
+
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -30,14 +32,18 @@ void TrajetSimple::Afficher ( ) const
 
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple ( const char* startPoint, const char* endPoint, 
+TrajetSimple::TrajetSimple ( const char* startPoint, const char* endPoint,
                              const char* transportMean )
-                            : Trajet ( startPoint, endPoint),
-                            mean ( transportMean )
+                            : Trajet ( startPoint, endPoint)
+
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
+
+    mean = new char[strlen(transportMean)+1];
+    strcpy(mean,transportMean);
+
 } //----- Fin de TrajetSimple (constructeur de copie)
 
 
@@ -46,4 +52,6 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
+
+    delete(mean);
 } //----- Fin de ~TrajetSimple

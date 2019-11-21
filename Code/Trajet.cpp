@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -52,8 +53,10 @@ Trajet::Trajet ( const char * startPoint, const char * endPoint )
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-    start = startPoint;
-    end = endPoint;
+    start = new char[strlen(startPoint)+1];
+    strcpy(start, startPoint);
+    end = new char[strlen(endPoint)+1];
+    strcpy(end, endPoint);
 } //----- Fin de Ensemble
 
 
@@ -64,10 +67,12 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
+
+    delete(start);
+    delete(end);
 } //----- Fin de ~Ensemble
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
