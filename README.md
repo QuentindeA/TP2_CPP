@@ -5,12 +5,9 @@ Tests unitaires pour :
 	Catalogue
 	TrajetSimple
 
-Creation d'un main avec un menu
-
 Developpement de Catalogue :
-	Définition de la méthode Find
-	Définition de la méthode AddTrajet
+	Définition de la méthode Find : deuxième méthode
 
-Modification de l'UML
+Modification de l'UML à partir du code 
 
 Rédaction du compte-rendu
