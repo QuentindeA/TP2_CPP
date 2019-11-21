@@ -33,16 +33,16 @@ void Catalogue::Afficher ( ) const
 //
 {
     unsigned int i;
-    
+
     cout << "Trajets disponibles dans le catalogue : " << endl;
-    
+
     for ( i = 0; i < nbTrajet; i++ )
     {
         listTrajet[i].Afficher();
     }
 } //----- Fin de Méthode
 
-void Catalogue::Find ( const char * startPoint, const char * endPoint ) const
+void Catalogue::Search ( const char * startPoint, const char * endPoint ) const
 // Algorithme :
 //
 {
@@ -56,10 +56,10 @@ Catalogue::Catalogue ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-    
+
     listTrajet = 0;
     nbTrajet = 0;
-    
+
 } //----- Fin de Catalogue
 
 

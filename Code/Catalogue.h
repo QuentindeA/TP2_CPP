@@ -23,7 +23,7 @@
 // possibles dans cette liste
 //------------------------------------------------------------------------
 
-class Catalogue 
+class Catalogue
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,14 +34,14 @@ public:
     //
     // Contrat :
     //
-    
+
     void Afficher ( ) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    void Find ( const char * startPoint, const char * endPoint ) const;
+
+    void Search ( const char * startPoint, const char * endPoint ) const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -59,7 +59,7 @@ public:
     //
     // Contrat :
     //
-    
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
