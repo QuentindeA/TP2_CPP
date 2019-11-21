@@ -7,13 +7,14 @@
 *******************************************************************************/
 
 //---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------
-#if ! defined ( CATALOGUE_H )
+#if !defined(CATALOGUE_H)
 #define CATALOGUE_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
+#define RALLONGEMENT 5
 
 //------------------------------------------------------------------ Types
 
@@ -23,54 +24,55 @@
 // possibles dans cette liste
 //------------------------------------------------------------------------
 
-class Catalogue 
+class Catalogue
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    void AddTrajet ( const Trajet* );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
-    void Afficher ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
-    void Find ( const char * startPoint, const char * endPoint ) const;
+    //----------------------------------------------------- Méthodes publiques
+    void AddTrajet(const Trajet *newTrajet);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-//-------------------------------------------- Constructeurs - destructeur
-    Catalogue ( );
+    void Afficher() const;
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Catalogue ( );
+    void Find(const char *startPoint, const char *endPoint) const;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-//------------------------------------------------------------------ PRIVE
+
+    //-------------------------------------------- Constructeurs - destructeur
+    Catalogue();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Catalogue();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+    //----------------------------------------------------- Méthodes protégées
 
-//----------------------------------------------------- Attributs protégés
+    //----------------------------------------------------- Attributs protégés
 
 private:
-//------------------------------------------------------- Attributs privés
-    Trajet* listTrajet;
+    //------------------------------------------------------- Attributs privés
+    Trajet *listTrajet;
     unsigned int nbTrajet;
+    unsigned int maxTrajet;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>

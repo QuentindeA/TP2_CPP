@@ -1,8 +1,9 @@
 TO DO:
 
-Testes unitaires pour :
+Tests unitaires pour :
 	TrajetCompose
 	Catalogue
+	TrajetSimple
 
 Creation d'un main avec un menu
 
@@ -12,4 +13,4 @@ Developpement de Catalogue :
 
 Modification de l'UML
 
-Rédaction du compte rendu
+Rédaction du compte-rendu

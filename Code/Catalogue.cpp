@@ -6,12 +6,13 @@
     e-mail               : louis.rob@insa-lyon.fr quentin.de-andria@insa-lyon.fr
 *******************************************************************************/
 
-//-------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) ----------
+//-------- Réalisation de la classe <Catalogue> (fichier Catalogue.cpp) --------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -22,48 +23,66 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Catalogue::AddTrajet ( const Trajet * )
+void Catalogue::AddTrajet(const Trajet *newTrajet)
 // Algorithme :
 //
 {
+    if (nbTrajet == maxTrajet)
+    {
+        maxTrajet += RALLONGEMENT;
+        Trajet *listTrajetPlusGrande = new (sizeof(Trajet) * (maxTrajet));
+        for (int i = 0; i < maxTrajet - RALLONGEMENT; i++)
+        {
+            *listTrajetPlusGrande[i] = *listTrajet[i];
+        }
+        delete (listTrajet);
+        listTrajet = listTrajetPlusGrande;
+    }
+
+    *listTrajet[nbTrajet] = *newTrajet;
+    nbTrajet++;
+
 } //----- Fin de Méthode
 
-void Catalogue::Afficher ( ) const
-// Algorithme :
-//
+void Catalogue::Afficher() const
 {
     unsigned int i;
-    
+
     cout << "Trajets disponibles dans le catalogue : " << endl;
-    
-    for ( i = 0; i < nbTrajet; i++ )
+
+    for (i = 0; i < nbTrajet; i++)
     {
         listTrajet[i].Afficher();
     }
 } //----- Fin de Méthode
 
-void Catalogue::Find ( const char * startPoint, const char * endPoint ) const
-// Algorithme :
-//
+void Catalogue::Find(const char *startPoint, const char *endPoint) const
 {
+    for (int i = 0; i < nbTrajet; i++)
+    {
+        if (strcmp(listTrajet[i].start, startPoint) == 0 &&
+            strcmp(listTrajet[i].end, endPoint) == 0)
+        {
+            listTrajet[i].Afficher();
+        }
+    }
 } //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-Catalogue::Catalogue ( )
-// Algorithme :
-//
+Catalogue::Catalogue()
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-    
+
     listTrajet = 0;
     nbTrajet = 0;
-    
+    maxTrajet = 10;
+    listTrajet = new (sizeof(Trajet) * maxTrajet);
+
 } //----- Fin de Catalogue
 
-
-Catalogue::~Catalogue ( )
+Catalogue::~Catalogue()
 // Algorithme :
 //
 {
@@ -71,7 +90,6 @@ Catalogue::~Catalogue ( )
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 } //----- Fin de ~Catalogue
-
 
 //------------------------------------------------------------------ PRIVE
 
