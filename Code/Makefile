@@ -1,33 +1,43 @@
-.PHONY: all, clean
+ECHO=@echo
+RM=@rm
+COMP=g++
+EDL=g++
+RMFLAGS=-f
+CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11 -DMAP
+EDLFLAGS=
+INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h
+REAL=$(INT:.h=.cpp)
+OBJ=$(INT:.h=.o)
+EXE=demo
+LIBS= #-lpthread ?
+CLEAN=clean
 
-CC = g++
-CFLAGS = -Wall -Werror -ansi -pedantic -std=c++11 -DMAP
+.PHONY : $(CLEAN)
 
-LIBS += -lpthread
+default : $(EXE)
 
-PROG = demo
-
-
-all: $(PROG)
-
-
-demo: demo.o Catalogue.o Trajet.o TrajetSimple.o TrajetCompose.o
-	$(CC) -o $@ $^ $(LIBS)
-
-demo.o: demo.cpp
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-Catalogue.o: Catalogue.cpp Catalogue.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-Trajet.o: Trajet.cpp Trajet.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
+demo.o : demo.cpp
+Catalogue.o : Catalogue.cpp Catalogue.o
+Trajet.o : Trajet.cpp Trajet.h
 TrajetSimple.o : TrajetSimple.cpp TrajetSimple.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+TrajetCompose.o : TrajetCompose.cpp TrajetCompose.h
 
-TrajetCompose.o: TrajetCompose.cpp TrajetCompose.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+%.o : %.cpp
+	$(ECHO) compil de \<$@\>
+	$(COMP) $(CPPFLAGS) -c $<
 
-clean:
-	rm -f $(PROGS) *.o
+
+$(EXE) : $(OBJ) 
+	$(ECHO) "edition des liens de <$(EXE)>"
+	$(EDL) -o $(EXE) $(OBJ) $(LIBS)
+
+$(CLEAN) :
+	$(RM) $(RMFLAGS) $(OBJ) $(EXE) core
+
+#options de make :
+#	-s silence
+#	-t touch
+#	-p toutes les réglès implicites + info du makefile dans le meme dossier
+#	-i ingore errors in commands
+#	-k keep going after erros
+	

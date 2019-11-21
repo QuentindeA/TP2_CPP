@@ -31,7 +31,10 @@ int main()
         cout << " 4 - Recherche d'un parcourt" << endl;
         cout << " 5 - Quitter" << endl;
 
+        cout << "   Reponse : ";
         cin >> answer;
+
+        cout << "------------------------------------" << endl;
 
         switch (answer[0]) {
             case '1' :
@@ -60,7 +63,9 @@ int main()
 
 void separator()
 {
-    cout << endl << "--------------------------------------------" << endl;
+    cout << "------------------------------------" << endl << endl << endl;
+    cout << "               MENU";
+    cout << endl << "------------------------------------" << endl;
 }
 
 void search(Catalogue * monCatalogue)
@@ -68,9 +73,9 @@ void search(Catalogue * monCatalogue)
     char* startPoint = new char[MAX_LENGTH];
     char* endPoint = new char[MAX_LENGTH];
 
-    cout << "Lieu de depart :" << endl;
+    cout << "Lieu de depart : ";
     cin >> startPoint;
-    cout << "Lieu d'arrivee :" << endl;
+    cout << "Lieu d'arrivee : ";
     cin >> endPoint;
 
     monCatalogue->Search(startPoint, endPoint);
@@ -85,11 +90,11 @@ TrajetSimple* makeTrajetSimple()
     char* endPoint = new char[MAX_LENGTH];
     char* mean = new char[MAX_LENGTH];
 
-    cout << "Point de depart :" << endl;
+    cout << "Point de depart : ";
     cin >> startPoint;
-    cout << "Point d'arrive :" << endl;
+    cout << "Point d'arrive : ";
     cin >> endPoint;
-    cout << "Moyen de transport :" << endl;
+    cout << "Moyen de transport : ";
     cin >> mean;
 
     TrajetSimple* ts = new TrajetSimple(startPoint, endPoint, mean);
