@@ -90,5 +90,16 @@ void addTrajetCompose(Catalogue * monCatalogue)
 }
 void search(Catalogue * monCatalogue)
 {
+    char* startPoint = new char[MAX_LENGTH];
+    char* endPoint = new char[MAX_LENGTH];
 
+    cout << "Lieu de depart :" << endl;
+    cin >> startPoint;
+    cout << "Lieu d'arrivee :" << endl;
+    cin >> endPoint;
+
+    monCatalogue->Search(startPoint, endPoint);
+
+    delete(startPoint);
+    delete(endPoint);
 }
