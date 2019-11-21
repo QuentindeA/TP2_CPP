@@ -38,7 +38,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 
-    TrajetCompose ( const TrajetSimple * list, const unsigned int sizeList );
+    TrajetCompose ( TrajetSimple ** list, const unsigned int sizeList );
     // Mode d'emploi :
     //
     // Contrat :
@@ -57,7 +57,7 @@ protected:
 
 
 //----------------------------------------------------- Attributs protégés
-    const TrajetSimple * listTrajet;
+    TrajetSimple ** listTrajet;
     const unsigned int nbTrajet;
 
 };
@@ -65,4 +65,3 @@ protected:
 //---------------------------- Autres définitions dépendantes de <TrajetCompose>
 
 #endif // TRAJET_COMPOSE_H
-

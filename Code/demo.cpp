@@ -1,15 +1,17 @@
 #include <iostream>
 #include "Catalogue.h"
 #include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 #define MAX_LENGTH 100
 
 using namespace std;
 
 void separator();
-void addTrajetSimple(Catalogue * monCatalogue);
-void addTrajetCompose(Catalogue * monCatalogue);
+TrajetSimple* makeTrajetSimple();
+TrajetCompose* makeTrajetCompse();
 void search(Catalogue * monCatalogue);
+
 
 int main()
 {
@@ -21,39 +23,33 @@ int main()
 
     while ( !quit )
     {
+        separator();
+
         cout << " 1 - Ajout d'un trajet simple" << endl;
         cout << " 2 - Ajout d'un trajet compose" << endl;
         cout << " 3 - Affichage du catalogue" << endl;
         cout << " 4 - Recherche d'un parcourt" << endl;
         cout << " 5 - Quitter" << endl;
-        separator();
 
         cin >> answer;
 
         switch (answer[0]) {
             case '1' :
-                cout << endl; separator();
-                addTrajetSimple(monCatalogue);
+                monCatalogue->AddTrajet(makeTrajetSimple());
                 break;
             case '2' :
-                cout << endl; separator();
-                addTrajetCompose(monCatalogue);
+                monCatalogue->AddTrajet(makeTrajetCompse());
                 break;
             case '3' :
-                cout << endl; separator();
                 monCatalogue->Afficher();
-                separator();
                 break;
             case '4' :
-                cout << endl; separator();
                 search(monCatalogue);
                 break;
             case '5' :
                 quit = true;
                 break;
             default :
-                cout << endl;
-                separator();
                 cout << "Inscrivez un chiffre entre 1 et 5" << endl;
                 break;
         }
@@ -61,33 +57,12 @@ int main()
     delete(answer);
     delete(monCatalogue);
 }
+
 void separator()
 {
-    cout << "--------------------------------------------" << endl;
+    cout << endl << "--------------------------------------------" << endl;
 }
-void addTrajetSimple(Catalogue * monCatalogue)
-{
-    char* startPoint = new char[MAX_LENGTH];
-    char* endPoint = new char[MAX_LENGTH];
-    char* mean = new char[MAX_LENGTH];
 
-    cout << "Point de depart :" << endl;
-    cin >> startPoint;
-    cout << "Point d'arrive :" << endl;
-    cin >> endPoint;
-    cout << "Moyen de transport :" << endl;
-    cin >> mean;
-
-    monCatalogue->AddTrajet(new TrajetSimple(startPoint, endPoint, mean));
-
-    delete(startPoint);
-    delete(endPoint);
-    delete(mean);
-}
-void addTrajetCompose(Catalogue * monCatalogue)
-{
-
-}
 void search(Catalogue * monCatalogue)
 {
     char* startPoint = new char[MAX_LENGTH];
@@ -102,4 +77,44 @@ void search(Catalogue * monCatalogue)
 
     delete(startPoint);
     delete(endPoint);
+}
+
+TrajetSimple* makeTrajetSimple()
+{
+    char* startPoint = new char[MAX_LENGTH];
+    char* endPoint = new char[MAX_LENGTH];
+    char* mean = new char[MAX_LENGTH];
+
+    cout << "Point de depart :" << endl;
+    cin >> startPoint;
+    cout << "Point d'arrive :" << endl;
+    cin >> endPoint;
+    cout << "Moyen de transport :" << endl;
+    cin >> mean;
+
+    TrajetSimple* ts = new TrajetSimple(startPoint, endPoint, mean);
+
+    delete(startPoint);
+    delete(endPoint);
+    delete(mean);
+
+    return ts;
+}
+
+TrajetCompose* makeTrajetCompse()
+{
+    int nbTrajetSimple;
+    int i;
+
+    cout << "Combien de trajet simple dans le trajet compose ?" << endl;
+    cin >> nbTrajetSimple;
+
+    TrajetSimple ** mesTrajetsSimples = new TrajetSimple*[nbTrajetSimple];
+
+    for ( i = 0; i < nbTrajetSimple; i++ )
+    {
+        mesTrajetsSimples[i] = makeTrajetSimple();
+    }
+
+    return new TrajetCompose(mesTrajetsSimples, nbTrajetSimple);
 }

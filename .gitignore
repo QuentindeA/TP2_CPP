@@ -1,7 +1,11 @@
+.*
+
+Code/.*
 Code/*~
 Code/*.o
+Code/demo
+
 Tests/*.o
 Tests/*~
-.*
-Code/.*
+
 Docs/.*
