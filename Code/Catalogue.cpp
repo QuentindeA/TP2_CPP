@@ -26,6 +26,14 @@ void Catalogue::AddTrajet ( const Trajet * )
 // Algorithme :
 //
 {
+    nbTrajet++;
+    Trajet * newList = new Trajet[nbTrajet];
+    for ( i = 0; i < nbTrajet-1; i++ )
+    {
+        newList[i] = listTrajet[i];
+    }
+    delete(listTrajet);
+    listTrajet = newList;
 } //----- Fin de Méthode
 
 void Catalogue::Afficher ( ) const
@@ -70,6 +78,11 @@ Catalogue::~Catalogue ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+
+    for ( i = 0; i < nbTrajet; i++ )
+    {
+
+    }
 } //----- Fin de ~Catalogue
 
 
