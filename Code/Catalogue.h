@@ -14,7 +14,6 @@
 #include "Trajet.h"
 
 //------------------------------------------------------------- Constantes
-#define RALLONGEMENT 5
 
 //------------------------------------------------------------------ Types
 
@@ -30,7 +29,7 @@ class Catalogue
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    void AddTrajet(const Trajet *newTrajet);
+    void AddTrajet(Trajet *newTrajet);
     // Mode d'emploi :
     //
     // Contrat :
@@ -70,7 +69,7 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    Trajet *listTrajet;
+    Trajet ** listTrajet;
     unsigned int nbTrajet;
     unsigned int maxTrajet;
 };

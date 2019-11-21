@@ -19,19 +19,22 @@ using namespace std;
 #include "Catalogue.h"
 
 //------------------------------------------------------------- Constantes
+#define RALLONGEMENT 5
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Catalogue::AddTrajet(const Trajet *newTrajet)
+void Catalogue::AddTrajet(Trajet *newTrajet)
 // Algorithme :
 //
 {
+    unsigned int i;
+
     if (nbTrajet == maxTrajet)
     {
         maxTrajet += RALLONGEMENT;
-        Trajet *listTrajetPlusGrande = new (sizeof(Trajet) * (maxTrajet));
-        for (int i = 0; i < maxTrajet - RALLONGEMENT; i++)
+        Trajet ** listTrajetPlusGrande = new Trajet*[maxTrajet];
+        for ( i = 0; i < maxTrajet - RALLONGEMENT; i++ )
         {
             *listTrajetPlusGrande[i] = *listTrajet[i];
         }
@@ -39,7 +42,7 @@ void Catalogue::AddTrajet(const Trajet *newTrajet)
         listTrajet = listTrajetPlusGrande;
     }
 
-    *listTrajet[nbTrajet] = *newTrajet;
+    listTrajet[nbTrajet] = newTrajet;
     nbTrajet++;
 } //----- Fin de Méthode
 
@@ -49,9 +52,9 @@ void Catalogue::Afficher() const
 
     cout << "Trajets disponibles dans le catalogue : " << endl;
 
-    for (i = 0; i < nbTrajet; i++)
+    for ( i = 0; i < nbTrajet; i++ )
     {
-        listTrajet[i].Afficher();
+        listTrajet[i]->Afficher();
     }
 } //----- Fin de Méthode
 
@@ -59,12 +62,13 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
 // Algorithme :
 //
 {
-    for (int i = 0; i < nbTrajet; i++)
+    unsigned int i;
+    for ( i = 0; i < nbTrajet; i++ )
     {
-        if (strcmp(listTrajet[i].start, startPoint) == 0 &&
-            strcmp(listTrajet[i].end, endPoint) == 0)
+        if (strcmp(listTrajet[i]->GetStart(), startPoint) == 0 &&
+            strcmp(listTrajet[i]->GetEnd(), endPoint) == 0)
         {
-            listTrajet[i].Afficher();
+            listTrajet[i]->Afficher();
         }
     }
 } //----- Fin de Méthode
@@ -76,8 +80,8 @@ Catalogue::Catalogue()
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
 
-    maxTrajet = 10;
-    listTrajet = new (sizeof(Trajet) * maxTrajet);
+    maxTrajet = RALLONGEMENT;
+    listTrajet = new Trajet*[maxTrajet];//(sizeof(Trajet) * maxTrajet);
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue()
@@ -88,9 +92,11 @@ Catalogue::~Catalogue()
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 
+unsigned int i;
+
     for ( i = 0; i < nbTrajet; i++ )
     {
-
+        delete(listTrajet[i]);
     }
 } //----- Fin de ~Catalogue
 
