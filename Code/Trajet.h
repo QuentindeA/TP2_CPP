@@ -18,8 +18,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-// Classe abstraite contenant un point de départ et un point d'arriver
-//
+// Classe abstraite modélidant un trajet défini par un point de départ
+// et un point d'arrivé.
+// Elle permet d'afficher ses deux attributs sur la sortie standard.
 //------------------------------------------------------------------------
 
 class Trajet
@@ -29,38 +30,21 @@ class Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     virtual const char * GetStart ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    
     virtual const char * GetEnd ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    
     virtual void Afficher ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //-------------------------------------------- Constructeurs - destructeur
     Trajet (const char * startPoint, const char * endPoint);
     // Mode d'emploi :
-    //
+    //   startPoint correspond au point de départ du trajet
+    //   endPoint correspond au point d'arrivé du trajet
     // Contrat :
-    //
+    //   les chaines pointées par startPoint et endPoint doivent être allouées
 
     virtual ~Trajet ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-
+    
 //------------------------------------------------------------------ PRIVE
 
 protected:

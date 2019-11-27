@@ -19,8 +19,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
-// La classe TrajetSimple permet de créer des trajets simples à partir d'un
-// départ, d'une arrivée et d'un moyen de transport
+// Classe modélisant un trajet simple défini par un point de départ, un point
+// d'arrivée et d'un moyen de transport.
+// Elle permet d'afficher tous ses attributs sur la sortie standard.
 //------------------------------------------------------------------------
 
 class TrajetSimple : public Trajet
@@ -34,6 +35,13 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const char* startPoint, const char* endPoint,
                    const char* transportMean );
+    // Mode d'emploi :
+    //   startPoint correspond au point de départ du trajet
+    //   endPoint correspond au point d'arrivé du trajet
+    //   tranportMean correspond au moyen de transport utilisé pour le trajet
+    // Contrat :
+    //   les chaines pointées par startPoint, endPoint et transportMean
+    //   doivent être allouées
 
     virtual ~TrajetSimple ( );
 
