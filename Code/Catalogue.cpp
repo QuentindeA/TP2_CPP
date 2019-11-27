@@ -34,9 +34,9 @@ void Catalogue::AddTrajet(const Trajet *newTrajet)
     {
         maxTrajet += RALLONGEMENT;
         const Trajet ** listTrajetPlusGrande = new const Trajet*[maxTrajet];
-        for ( i = 0; i < maxTrajet - RALLONGEMENT; i++ )
+        for ( i = 0; i < nbTrajet; i++ )
         {
-            *listTrajetPlusGrande[i] = *listTrajet[i];
+            listTrajetPlusGrande[i] = listTrajet[i];
         }
         delete (listTrajet);
         listTrajet = listTrajetPlusGrande;
@@ -81,7 +81,7 @@ Catalogue::Catalogue()
 #endif
 
     maxTrajet = RALLONGEMENT;
-    listTrajet = new Trajet*[maxTrajet];//(sizeof(Trajet) * maxTrajet);
+    listTrajet = new const Trajet*[maxTrajet];//(sizeof(Trajet) * maxTrajet);
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue()
