@@ -6,14 +6,16 @@ Tests unitaires pour :
 	TrajetSimple
 
 Developpement de Catalogue :
-	Définition de la méthode Find : deuxième méthode
+	Définition de la méthode Search : deuxième méthode
 
-Modification de l'UML à partir du code 
+Mise en page du compte-rendu
 
-Rédaction du compte-rendu
+Valgrind
 
-Valgrind (0 fuites)
+Etat de la mémoire exemple concret
 
-Checker guide style INSA
+Commenter le code (guide style INSA && Algo .cpp)
 
-Commenter le code
+Listing classes définies dans l'application (à faire dans le fichier CR)
+
+CCL (liste des pb rencontrés / proposer axes d'evolutions et améliorations) 
