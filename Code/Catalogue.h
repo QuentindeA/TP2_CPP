@@ -29,7 +29,7 @@ class Catalogue
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    void AddTrajet(Trajet *newTrajet);
+    void AddTrajet(const Trajet *newTrajet);
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,7 +69,7 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    Trajet ** listTrajet;
+    const Trajet ** listTrajet;
     unsigned int nbTrajet;
     unsigned int maxTrajet;
 };

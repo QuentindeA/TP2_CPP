@@ -24,7 +24,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Catalogue::AddTrajet(Trajet *newTrajet)
+void Catalogue::AddTrajet(const Trajet *newTrajet)
 // Algorithme :
 //
 {
@@ -33,7 +33,7 @@ void Catalogue::AddTrajet(Trajet *newTrajet)
     if (nbTrajet == maxTrajet)
     {
         maxTrajet += RALLONGEMENT;
-        Trajet ** listTrajetPlusGrande = new Trajet*[maxTrajet];
+        const Trajet ** listTrajetPlusGrande = new const Trajet*[maxTrajet];
         for ( i = 0; i < maxTrajet - RALLONGEMENT; i++ )
         {
             *listTrajetPlusGrande[i] = *listTrajet[i];
