@@ -20,8 +20,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetCompose>
-//
-//
+// Modélise un trajet composé de plusieurs trajets simples
+// Permet d'afficher tous les trajets simples le constituant
 //------------------------------------------------------------------------
 
 class TrajetCompose : public Trajet
@@ -31,24 +31,19 @@ class TrajetCompose : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     void Afficher ( ) const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //-------------------------------------------- Constructeurs - destructeur
-
     TrajetCompose ( const TrajetSimple ** list, const unsigned int sizeList );
     // Mode d'emploi :
-    //
+    //   list correspond à un tableau de pointeurs de trajet simple
+    //   sizeList correspond au nombre de trajet simple que contient list
     // Contrat :
-    //
+    //   Tous les trajet simples doivent être alloués
+    //   Le point d'arrivé d'un trajet simple doit correspondre au point de
+    //     départ du trajet suivant
+    //   sizeList doit correspondre au bon nombre d'élément de list
 
     virtual ~TrajetCompose ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
