@@ -19,8 +19,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-// Permet de créer une liste de trajets disponibles et d'ajouter des trajets
-// possibles dans cette liste
+// Modélise une liste de trajets.
+// Il est possible d'ajouter de nouveaux trajets, d'afficher la liste des
+// trajets disponibles ainsi que de faire des recherches de parcours
 //------------------------------------------------------------------------
 
 class Catalogue
@@ -31,34 +32,24 @@ public:
     //----------------------------------------------------- Méthodes publiques
     void AddTrajet(const Trajet *newTrajet);
     // Mode d'emploi :
-    //
+    //   Fournir un pointeur vers un nouveau Trajet qui sera ajouté
+    //   dans la liste de pointeurs de Trajets
     // Contrat :
-    //
+    //   Le trajet pointé doit être alloué
 
     void Afficher() const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     void Search ( const char * startPoint, const char * endPoint ) const;
     // Mode d'emploi :
-    //
+    //   Fournir un pointeur vers le point de départ et un autre vers le point
+    // d'arrivé correspondant au parcours souhaité
     // Contrat :
-    //
+    //   Nécessite que les chaînes de caractère pointées soient allouées
 
     //-------------------------------------------- Constructeurs - destructeur
     Catalogue();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
+    
     virtual ~Catalogue();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
