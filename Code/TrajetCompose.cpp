@@ -45,7 +45,7 @@ void TrajetCompose::Afficher (  ) const
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetCompose::TrajetCompose (  TrajetSimple ** list,
+TrajetCompose::TrajetCompose (  const TrajetSimple ** list,
                                 const unsigned int sizeList )
                                 : Trajet (  list[0]->GetStart(),
                                             list[sizeList-1]->GetEnd() ),

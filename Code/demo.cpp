@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -8,8 +8,8 @@
 using namespace std;
 
 void separator();
-TrajetSimple* makeTrajetSimple();
-TrajetCompose* makeTrajetCompse();
+const TrajetSimple* makeTrajetSimple();
+const TrajetCompose* makeTrajetCompose();
 void search(Catalogue * monCatalogue);
 
 
@@ -41,7 +41,7 @@ int main()
                 monCatalogue->AddTrajet(makeTrajetSimple());
                 break;
             case '2' :
-                monCatalogue->AddTrajet(makeTrajetCompse());
+                monCatalogue->AddTrajet(makeTrajetCompose());
                 break;
             case '3' :
                 monCatalogue->Afficher();
@@ -84,7 +84,7 @@ void search(Catalogue * monCatalogue)
     delete(endPoint);
 }
 
-TrajetSimple* makeTrajetSimple()
+const TrajetSimple* makeTrajetSimple()
 {
     char* startPoint = new char[MAX_LENGTH];
     char* endPoint = new char[MAX_LENGTH];
@@ -97,7 +97,7 @@ TrajetSimple* makeTrajetSimple()
     cout << "Moyen de transport : ";
     cin >> mean;
 
-    TrajetSimple* ts = new TrajetSimple(startPoint, endPoint, mean);
+    const TrajetSimple* ts = new const TrajetSimple(startPoint, endPoint, mean);
 
     delete(startPoint);
     delete(endPoint);
@@ -106,7 +106,7 @@ TrajetSimple* makeTrajetSimple()
     return ts;
 }
 
-TrajetCompose* makeTrajetCompse()
+const TrajetCompose* makeTrajetCompose()
 {
     int nbTrajetSimple;
     int i;
@@ -114,12 +114,12 @@ TrajetCompose* makeTrajetCompse()
     cout << "Combien de trajet simple dans le trajet compose ?" << endl;
     cin >> nbTrajetSimple;
 
-    TrajetSimple ** mesTrajetsSimples = new TrajetSimple*[nbTrajetSimple];
+    const TrajetSimple ** mesTrajetsSimples = new const TrajetSimple*[nbTrajetSimple];
 
     for ( i = 0; i < nbTrajetSimple; i++ )
     {
         mesTrajetsSimples[i] = makeTrajetSimple();
     }
 
-    return new TrajetCompose(mesTrajetsSimples, nbTrajetSimple);
+    return new const TrajetCompose(mesTrajetsSimples, nbTrajetSimple);
 }
