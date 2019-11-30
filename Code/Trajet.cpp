@@ -67,9 +67,8 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-
-    delete(start);
-    delete(end);
+    delete[] start;
+    delete[] end;
 } //----- Fin de ~Ensemble
 
 

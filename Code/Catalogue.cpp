@@ -38,7 +38,7 @@ void Catalogue::AddTrajet(const Trajet *newTrajet)
         {
             listTrajetPlusGrande[i] = listTrajet[i];
         }
-        delete (listTrajet);
+        delete[] listTrajet;
         listTrajet = listTrajetPlusGrande;
     }
 
@@ -79,7 +79,7 @@ Catalogue::Catalogue()
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-
+    nbTrajet = 0;
     maxTrajet = RALLONGEMENT;
     listTrajet = new const Trajet*[maxTrajet];//(sizeof(Trajet) * maxTrajet);
 } //----- Fin de Catalogue
@@ -96,8 +96,9 @@ unsigned int i;
 
     for ( i = 0; i < nbTrajet; i++ )
     {
-        delete(listTrajet[i]);
+        delete listTrajet[i];
     }
+    delete[] listTrajet;
 } //----- Fin de ~Catalogue
 
 //------------------------------------------------------------------ PRIVE

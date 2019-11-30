@@ -53,5 +53,5 @@ TrajetSimple::~TrajetSimple ( )
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
 
-    delete(mean);
+    delete[] mean;
 } //----- Fin de ~TrajetSimple

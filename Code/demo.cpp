@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -15,9 +15,14 @@ void search(Catalogue * monCatalogue);
 
 int main()
 {
+
+    int * a = new int;
+    delete a;
+    //delete a;
+
     bool quit = false;
     //char answer = '0';
-    char* answer = new char[MAX_LENGTH]; //Je crois qu'il ne veut pas que l'on face comme ça
+    char* answer = new char[MAX_LENGTH];
 
     Catalogue * monCatalogue = new Catalogue();
 
@@ -28,7 +33,7 @@ int main()
         cout << " 1 - Ajout d'un trajet simple" << endl;
         cout << " 2 - Ajout d'un trajet compose" << endl;
         cout << " 3 - Affichage du catalogue" << endl;
-        cout << " 4 - Recherche d'un parcourt" << endl;
+        cout << " 4 - Recherche d'un parcours" << endl;
         cout << " 5 - Quitter" << endl;
 
         cout << "   Reponse : ";
@@ -57,8 +62,10 @@ int main()
                 break;
         }
     }
-    delete(answer);
-    delete(monCatalogue);
+    delete[] answer;
+    delete monCatalogue;
+
+    return 0;
 }
 
 void separator()
@@ -80,8 +87,8 @@ void search(Catalogue * monCatalogue)
 
     monCatalogue->Search(startPoint, endPoint);
 
-    delete(startPoint);
-    delete(endPoint);
+    delete[] startPoint;
+    delete[] endPoint;
 }
 
 const TrajetSimple* makeTrajetSimple()
@@ -99,9 +106,9 @@ const TrajetSimple* makeTrajetSimple()
 
     const TrajetSimple* ts = new const TrajetSimple(startPoint, endPoint, mean);
 
-    delete(startPoint);
-    delete(endPoint);
-    delete(mean);
+    delete[] startPoint;
+    delete[] endPoint;
+    delete[] mean;
 
     return ts;
 }

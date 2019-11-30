@@ -57,7 +57,6 @@ TrajetCompose::TrajetCompose (  const TrajetSimple ** list,
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
-
 } //----- Fin de Ensemble
 
 
@@ -68,6 +67,13 @@ TrajetCompose::~TrajetCompose ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+
+for(unsigned int i=0; i<nbTrajet; ++i)
+{
+    delete listTrajet[i];
+}
+delete[] listTrajet;
+
 } //----- Fin de ~Ensemble
 
 

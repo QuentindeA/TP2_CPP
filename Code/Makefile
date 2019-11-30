@@ -3,7 +3,7 @@ RM=@rm
 COMP=g++
 EDL=g++
 RMFLAGS=-f
-CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11 -DMAP
+CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11 -DMAP -g
 EDLFLAGS=
 INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h
 REAL=$(INT:.h=.cpp)
