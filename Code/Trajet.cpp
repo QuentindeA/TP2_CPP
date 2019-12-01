@@ -23,46 +23,34 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-const char * Trajet::GetStart ( ) const
-// Algorithme :
-//
+const char *Trajet::GetStart() const
 {
     return start;
 } //----- Fin de Méthode
 
-
-const char * Trajet::GetEnd ( ) const
-// Algorithme :
-//
+const char *Trajet::GetEnd() const
 {
     return end;
 } //----- Fin de Méthode
 
-void Trajet::Afficher ( ) const
-// Algorithme :
-//
+void Trajet::Afficher() const
 {
-    cout << "de " << start << " a " << end ;
+    cout << "de " << start << " a " << end;
 } //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const char * startPoint, const char * endPoint )
-// Algorithme :
-//
+Trajet::Trajet(const char *startPoint, const char *endPoint)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif
-    start = new char[strlen(startPoint)+1];
+    start = new char[strlen(startPoint) + 1];
     strcpy(start, startPoint);
-    end = new char[strlen(endPoint)+1];
+    end = new char[strlen(endPoint) + 1];
     strcpy(end, endPoint);
 } //----- Fin de Ensemble
 
-
-Trajet::~Trajet ( )
-// Algorithme :
-//
+Trajet::~Trajet()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
@@ -70,7 +58,6 @@ Trajet::~Trajet ( )
     delete[] start;
     delete[] end;
 } //----- Fin de ~Ensemble
-
 
 //------------------------------------------------------------------ PRIVE
 

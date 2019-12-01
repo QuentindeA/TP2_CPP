@@ -26,15 +26,17 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::AddTrajet(const Trajet *newTrajet)
 // Algorithme :
-//
+//  Si la liste est emplie : avant d'insérer un nouvel élément on crée une
+//  nouvelle zone mémoire plus grande puis on affecte les anciennes
+//  valeurs dans la nouvelle liste et on supprime l'ancienne liste
 {
     unsigned int i;
 
     if (nbTrajet == maxTrajet)
     {
         maxTrajet += RALLONGEMENT;
-        const Trajet ** listTrajetPlusGrande = new const Trajet*[maxTrajet];
-        for ( i = 0; i < nbTrajet; i++ )
+        const Trajet **listTrajetPlusGrande = new const Trajet *[maxTrajet];
+        for (i = 0; i < nbTrajet; i++)
         {
             listTrajetPlusGrande[i] = listTrajet[i];
         }
@@ -52,7 +54,7 @@ void Catalogue::Afficher() const
 
     cout << "Trajets disponibles dans le catalogue : " << endl;
 
-    for ( i = 0; i < nbTrajet; i++ )
+    for (i = 0; i < nbTrajet; i++)
     {
         listTrajet[i]->Afficher();
     }
@@ -63,7 +65,7 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
 //
 {
     unsigned int i;
-    for ( i = 0; i < nbTrajet; i++ )
+    for (i = 0; i < nbTrajet; i++)
     {
         if (strcmp(listTrajet[i]->GetStart(), startPoint) == 0 &&
             strcmp(listTrajet[i]->GetEnd(), endPoint) == 0)
@@ -71,6 +73,7 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
             listTrajet[i]->Afficher();
         }
     }
+
 } //----- Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -81,20 +84,18 @@ Catalogue::Catalogue()
 #endif
     nbTrajet = 0;
     maxTrajet = RALLONGEMENT;
-    listTrajet = new const Trajet*[maxTrajet];//(sizeof(Trajet) * maxTrajet);
+    listTrajet = new const Trajet *[maxTrajet]; //(sizeof(Trajet) * maxTrajet);
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue()
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
 
-unsigned int i;
+    unsigned int i;
 
-    for ( i = 0; i < nbTrajet; i++ )
+    for (i = 0; i < nbTrajet; i++)
     {
         delete listTrajet[i];
     }

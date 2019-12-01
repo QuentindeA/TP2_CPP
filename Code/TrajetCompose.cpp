@@ -22,60 +22,51 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void TrajetCompose::Afficher (  ) const
-// Algorithme :
-//
+void TrajetCompose::Afficher() const
 {
     int unsigned i;
-    for ( i = 0; i<nbTrajet-1; i++ )
+    for (i = 0; i < nbTrajet - 1; i++)
     {
         cout << "de " << listTrajet[i]->GetStart();
         cout << " a " << listTrajet[i]->GetEnd();
-        cout << " - " ;
+        cout << " - ";
     }
-    if ( nbTrajet > 0 )
+    if (nbTrajet > 0)
     {
-        cout << "de " << listTrajet[nbTrajet-1]->GetStart();
-        cout << " a " <<listTrajet[nbTrajet-1]->GetEnd();
+        cout << "de " << listTrajet[nbTrajet - 1]->GetStart();
+        cout << " a " << listTrajet[nbTrajet - 1]->GetEnd();
         cout << endl;
     }
 
 } //----- Fin de Méthode
 
-
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetCompose::TrajetCompose (  const TrajetSimple ** list,
-                                const unsigned int sizeList )
-                                : Trajet (  list[0]->GetStart(),
-                                            list[sizeList-1]->GetEnd() ),
-                                listTrajet ( list ),
-                                nbTrajet ( sizeList )
-// Algorithme :
-//
+TrajetCompose::TrajetCompose(const TrajetSimple **list,
+                             const unsigned int sizeList)
+    : Trajet(list[0]->GetStart(),
+             list[sizeList - 1]->GetEnd()),
+      listTrajet(list),
+      nbTrajet(sizeList)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
 } //----- Fin de Ensemble
 
-
-TrajetCompose::~TrajetCompose ( )
-// Algorithme :
-//
+TrajetCompose::~TrajetCompose()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
 
-for(unsigned int i=0; i<nbTrajet; ++i)
-{
-    delete listTrajet[i];
-}
-delete[] listTrajet;
+    for (unsigned int i = 0; i < nbTrajet; ++i)
+    {
+        delete listTrajet[i];
+    }
+    delete[] listTrajet;
 
 } //----- Fin de ~Ensemble
-
 
 //------------------------------------------------------------------ PRIVE
 

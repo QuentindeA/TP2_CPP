@@ -3,30 +3,24 @@
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 
-#define MAX_LENGTH 100
-
 using namespace std;
 
-void separator();
-const TrajetSimple* makeTrajetSimple();
-const TrajetCompose* makeTrajetCompose();
-void search(Catalogue * monCatalogue);
+static const unsigned int MAX_LENGTH = 100;
 
+void separator();
+const TrajetSimple *makeTrajetSimple();
+const TrajetCompose *makeTrajetCompose();
+void search(Catalogue *monCatalogue);
 
 int main()
 {
-
-    int * a = new int;
-    delete a;
-    //delete a;
-
     bool quit = false;
     //char answer = '0';
-    char* answer = new char[MAX_LENGTH];
+    char *answer = new char[MAX_LENGTH];
 
-    Catalogue * monCatalogue = new Catalogue();
+    Catalogue *monCatalogue = new Catalogue();
 
-    while ( !quit )
+    while (!quit)
     {
         separator();
 
@@ -41,25 +35,26 @@ int main()
 
         cout << "------------------------------------" << endl;
 
-        switch (answer[0]) {
-            case '1' :
-                monCatalogue->AddTrajet(makeTrajetSimple());
-                break;
-            case '2' :
-                monCatalogue->AddTrajet(makeTrajetCompose());
-                break;
-            case '3' :
-                monCatalogue->Afficher();
-                break;
-            case '4' :
-                search(monCatalogue);
-                break;
-            case '5' :
-                quit = true;
-                break;
-            default :
-                cout << "Inscrivez un chiffre entre 1 et 5" << endl;
-                break;
+        switch (answer[0])
+        {
+        case '1':
+            monCatalogue->AddTrajet(makeTrajetSimple());
+            break;
+        case '2':
+            monCatalogue->AddTrajet(makeTrajetCompose());
+            break;
+        case '3':
+            monCatalogue->Afficher();
+            break;
+        case '4':
+            search(monCatalogue);
+            break;
+        case '5':
+            quit = true;
+            break;
+        default:
+            cout << "Inscrivez un chiffre entre 1 et 5" << endl;
+            break;
         }
     }
     delete[] answer;
@@ -70,15 +65,18 @@ int main()
 
 void separator()
 {
-    cout << "------------------------------------" << endl << endl << endl;
+    cout << "------------------------------------" << endl
+         << endl
+         << endl;
     cout << "               MENU";
-    cout << endl << "------------------------------------" << endl;
+    cout << endl
+         << "------------------------------------" << endl;
 }
 
-void search(Catalogue * monCatalogue)
+void search(Catalogue *monCatalogue)
 {
-    char* startPoint = new char[MAX_LENGTH];
-    char* endPoint = new char[MAX_LENGTH];
+    char *startPoint = new char[MAX_LENGTH];
+    char *endPoint = new char[MAX_LENGTH];
 
     cout << "Lieu de depart : ";
     cin >> startPoint;
@@ -91,11 +89,11 @@ void search(Catalogue * monCatalogue)
     delete[] endPoint;
 }
 
-const TrajetSimple* makeTrajetSimple()
+const TrajetSimple *makeTrajetSimple()
 {
-    char* startPoint = new char[MAX_LENGTH];
-    char* endPoint = new char[MAX_LENGTH];
-    char* mean = new char[MAX_LENGTH];
+    char *startPoint = new char[MAX_LENGTH];
+    char *endPoint = new char[MAX_LENGTH];
+    char *mean = new char[MAX_LENGTH];
 
     cout << "Point de depart : ";
     cin >> startPoint;
@@ -104,7 +102,7 @@ const TrajetSimple* makeTrajetSimple()
     cout << "Moyen de transport : ";
     cin >> mean;
 
-    const TrajetSimple* ts = new const TrajetSimple(startPoint, endPoint, mean);
+    const TrajetSimple *ts = new const TrajetSimple(startPoint, endPoint, mean);
 
     delete[] startPoint;
     delete[] endPoint;
@@ -113,7 +111,7 @@ const TrajetSimple* makeTrajetSimple()
     return ts;
 }
 
-const TrajetCompose* makeTrajetCompose()
+const TrajetCompose *makeTrajetCompose()
 {
     int nbTrajetSimple;
     int i;
@@ -121,9 +119,9 @@ const TrajetCompose* makeTrajetCompose()
     cout << "Combien de trajet simple dans le trajet compose ?" << endl;
     cin >> nbTrajetSimple;
 
-    const TrajetSimple ** mesTrajetsSimples = new const TrajetSimple*[nbTrajetSimple];
+    const TrajetSimple **mesTrajetsSimples = new const TrajetSimple *[nbTrajetSimple];
 
-    for ( i = 0; i < nbTrajetSimple; i++ )
+    for (i = 0; i < nbTrajetSimple; i++)
     {
         mesTrajetsSimples[i] = makeTrajetSimple();
     }
