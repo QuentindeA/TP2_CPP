@@ -16,6 +16,11 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+typedef struct
+{
+    char *localisation;
+    struct elem *next;
+} elem;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
@@ -39,19 +44,26 @@ public:
 
     void Afficher() const;
 
-    void Search ( const char * startPoint, const char * endPoint ) const;
+    void Search(const char *startPoint, const char *endPoint) const;
     // Mode d'emploi :
     //   Fournir un pointeur vers le point de départ et un autre vers le point
     // d'arrivé correspondant au parcours souhaité
     // Contrat :
     //   Nécessite que les chaînes de caractère pointées soient allouées
 
+    void AdvancedSearch(const char *position, const char *&target,
+                        const char *&listTrajetsCourrants);
+    // Mode d'emploi :
+    //
+    //
+    //
+
     //-------------------------------------------- Constructeurs - destructeur
     Catalogue();
-    
+
     virtual ~Catalogue();
 
-//------------------------------------------------------------------ PRIVE
+    //------------------------------------------------------------------ PRIVE
 
 protected:
     //----------------------------------------------------- Méthodes protégées
@@ -60,7 +72,7 @@ protected:
 
 private:
     //------------------------------------------------------- Attributs privés
-    const Trajet ** listTrajet;
+    const Trajet **listTrajet;
     unsigned int nbTrajet;
     unsigned int maxTrajet;
 };

@@ -72,9 +72,21 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
         {
             listTrajet[i]->Afficher();
         }
-    }
+    } // Fin de la recherche simple
+
+    //Recherche avancée
+    elem *list = NULL;
+
+    AdvancedSearch(startPoint, endPoint, list);
 
 } //----- Fin de Méthode
+
+void Catalogue::AdvancedSearch(const char *position, const char *&target,
+                               const char *&listTrajetsCourrants)
+// Algorithme :
+//
+{
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue()
