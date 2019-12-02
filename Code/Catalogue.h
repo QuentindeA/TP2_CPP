@@ -19,6 +19,7 @@
 typedef struct
 {
     char *localisation;
+    char *mean;
     struct elem *next;
 } elem;
 
@@ -54,8 +55,6 @@ public:
     void AdvancedSearch(const char *position, const char *&target,
                         const char *&listTrajetsCourrants);
     // Mode d'emploi :
-    //
-    //
     //
 
     //-------------------------------------------- Constructeurs - destructeur
