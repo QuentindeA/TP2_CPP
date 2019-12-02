@@ -46,7 +46,7 @@ void Catalogue::AddTrajet(const Trajet *newTrajet)
 
     listTrajet[nbTrajet] = newTrajet;
     nbTrajet++;
-} //----- Fin de Méthode
+} //----- Fin de AddTrajet
 
 void Catalogue::Afficher() const
 {
@@ -58,12 +58,13 @@ void Catalogue::Afficher() const
     {
         listTrajet[i]->Afficher();
     }
-} //----- Fin de Méthode
+} //----- Fin de Afficher
 
 void Catalogue::Search(const char *startPoint, const char *endPoint) const
 // Algorithme :
 //
 {
+    cout << "technique 1 :" << endl;
     unsigned int i;
     for (i = 0; i < nbTrajet; i++)
     {
@@ -73,165 +74,11 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
             listTrajet[i]->Afficher();
         }
     }
-} //----- Fin de Méthode
-
-void Catalogue::AdvancedSearch(const char *position, const char *&target,
-                               const char *&listTrajetsCourrants)
-// Algorithme :
-//
-{
-    bool dejaAffiche = false;
-
-    //ajoute la position acutelle en fin de liste
-    elem *currentPosition = new elem;
-    strcpy(currentPosition->localisation, position);
-    currentPosition->mean = NULL;
-    currentPosition->next = NULL;
-    if (listTrajetsCourrants == NULL)
-    {
-        listTrajetsCourrants = currentPosition;
-    }
-    else
-    {
-        elem *parcoursList = listTrajetsCourrants;
-        while (parcoursList->next != NULL)
-        {
-            parcoursList = parcoursList->next;
-        }
-        parcoursList->next = currentPosition;
-    }
-
-    for (int i = 0; i < nbTrajet; ++i)
-    {
-        if (strcmp(*listTrajets[i].getStart(), position) == 0) //check pointeur
-        {
-            if (strcmp(*listTrajets[i].getEnd(), target) == 0)
-            {
-                //on rajoute la target dans la liste
-                elem *goal = new elem;
-                strcpy(goal->localisation, target);
-                goal->mean = NULL;
-                currentPosition->next = NULL;
-                elem *parcoursList = listTrajetsCourrants;
-                while (parcoursList->next != NULL)
-                {
-                    parcoursList = parcoursList->next;
-                }
-                //on rajoute le mean aussi
-                strcpy(parcoursList->mean, *listTrajets[i].getMean()); //Comment on a le Mean ??
-                parcoursList->next = goal;
-
-                //On affiche listTrajetsCourrants
-                parcourList = listTrajetsCourrants;
-                while (parcourList != NULL)
-                {
-                    if (!dejaAffiche)
-                    {
-                        cout << "Trajets disponibles dans le catalogue : " << endl;
-                        dejaAffiche = true;
-                    }
-                    cout << "de " << parcoursList->localisation << " a " << end;
-                    mean = parcoursList->mean;
-                    parcourList = parcourList->next;
-                    cout << parcoursList->localisation << end;
-                    cout << " en " << mean << end;
-                }
-
-                //On delete les deux derniers elem de listTrajetsCourrants --> backtracking
-                parcourList = listTrajetsCourrants;
-                parcoursList = parcoursList->next;
-                elem *parcoursList2 = listTrajetsCourrants;
-                if (parcoursList->next == NULL) //cas ou 2 elem
-                {
-                    delete parcoursList->localisation;
-                    delete parcoursList2->next;
-                }
-                else
-                {
-                    parcoursList = parcoursList->next;
-                    parcoursList2 = parcoursList2->next;
-                    elem *parcoursList3 = listTrajetsCourrants;
-                    if (parcoursList->next == NULL) //cas ou 3 elem
-                    {
-                        delete parcoursList->localisation;
-                        delete parcoursList2->next;
-                        delete parcoursList2->mean;
-                        delete parcoursList2->localisation;
-                        delete parcoursList3->next;
-                    }
-                    else //cas ou plus que 3 elem
-                    {
-                        while (parcourList != NULL)
-                        {
-                            parcoursList = parcoursList->next;
-                            parcoursList2 = parcoursList2->next;
-                            parcoursList3 = parcoursList3->next;
-                        }
-                        delete parcoursList->localisation;
-                        delete parcoursList2->next;
-                        delete parcoursList2->mean;
-                        delete parcoursList2->localisation;
-                        delete parcoursList3->next;
-                    }
-                }
-                break;
-            }
-            else
-            {
-                //on check qu'on est pas déjà passé par ici
-                elem *parcoursList = listTrajetsCourrants;
-                while (parcourList->next != NULL)
-                {
-                    if (strcmp(parcoursList->localisation, *listTrajets[i].getEnd()) == 1)
-                    {
-                        AdvancedSearch(*listTrajets[i].getEnd(), target, listTrajetsCourrants);
-                    }
-                }
-            }
-        }
-    }
-    //On supprime la position courante en remontant d'une position --> backtracking
-    parcourList = listTrajetsCourrants;
-    parcoursList = parcoursList->next;
-    elem *parcoursList2 = listTrajetsCourrants;
-    if (parcoursList->next == NULL) //cas ou 2 elem
-    {
-        delete parcoursList->localisation;
-        delete parcoursList2->next;
-    }
-    else
-    {
-        parcoursList = parcoursList->next;
-        parcoursList2 = parcoursList2->next;
-        elem *parcoursList3 = listTrajetsCourrants;
-        if (parcoursList->next == NULL) //cas ou 3 elem
-        {
-            delete parcoursList->localisation;
-            delete parcoursList2->next;
-            delete parcoursList2->mean;
-            delete parcoursList2->localisation;
-            delete parcoursList3->next;
-
-            position = parcoursList3->localisation;
-        }
-        else //cas ou plus que 3 elem
-        {
-            while (parcourList != NULL)
-            {
-                parcoursList = parcoursList->next;
-                parcoursList2 = parcoursList2->next;
-                parcoursList3 = parcoursList3->next;
-            }
-            delete parcoursList->localisation;
-            delete parcoursList2->next;
-            delete parcoursList2->mean;
-            delete parcoursList2->localisation;
-            delete parcoursList3->next;
-
-            position = parcoursList3->localisation;
-        }
-    }
-}
+    cout << endl;
+    cout << "technique 2 :" << endl;
+    etape *itinéraire = NULL;
+    advancedSearch(itinéraire, *startPoint, *endPoint);
+} //----- Fin de Search
 
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue()
@@ -262,3 +109,82 @@ Catalogue::~Catalogue()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
+void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
+                               const char &target) const
+// Algorithme :
+//
+{
+    //on crée le maillont supp
+    etape nouvelleEtape;
+
+    for (int i = 0; i < nbTrajet; ++i)
+    {
+        if (strcmp(&posAct, listTrajet[i]->GetStart()) == 0)
+        {
+            //si fin trouvé on affiche
+            if (strcmp(&target, listTrajet[i]->GetEnd()) == 0)
+            {
+                etape *parcoursList = itineraire;
+                bool premiereIter = true;
+                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL)
+                {
+                    premiereIter = false;
+                    (parcoursList->way)->Afficher();
+                    parcoursList = parcoursList->next;
+                }
+                cout << endl;
+            }
+            else
+            {
+                //Si n'appartient pas alors on ajoute
+                etape *parcoursList = itineraire;
+                bool premiereIter = true;
+                bool dejaPresent = false;
+                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL && dejaPresent == false)
+                {
+                    premiereIter = false;
+                    if (parcoursList->way == listTrajet[i])
+                    {
+                        dejaPresent = true;
+                    }
+                    parcoursList = parcoursList->next;
+                }
+                if (dejaPresent == false)
+                {
+                    //on ajoute
+                    nouvelleEtape.way = listTrajet[i];
+                    if (itineraire == NULL)
+                    {
+                        itineraire = &nouvelleEtape;
+                        nouvelleEtape.next = &nouvelleEtape;
+                        nouvelleEtape.previous = &nouvelleEtape;
+                    }
+                    else
+                    {
+                        nouvelleEtape.previous = itineraire->previous;
+                        nouvelleEtape.next = itineraire;
+                        itineraire->previous = &nouvelleEtape;
+                        nouvelleEtape.previous->next = &nouvelleEtape;
+                    }
+
+                    //on réitère en profondeur
+                    advancedSearch(itineraire, *(nouvelleEtape.way)->GetStart(), target);
+                }
+            }
+        }
+    }
+    //On supprime last
+    if (itineraire != NULL)
+    {
+        if (itineraire->next != itineraire)
+        {
+            itineraire->previous = itineraire->previous->previous;
+            itineraire->previous->next = itineraire;
+        }
+        else
+        {
+            itineraire = NULL;
+        }
+    }
+} //----- Fin de advancedSearch

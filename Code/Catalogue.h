@@ -16,12 +16,12 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef struct
+typedef struct etape
 {
-    char *localisation;
-    char *mean;
-    struct elem *next;
-} elem;
+    const Trajet *way;
+    struct etape *next;
+    struct etape *previous;
+} etape;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
@@ -48,14 +48,9 @@ public:
     void Search(const char *startPoint, const char *endPoint) const;
     // Mode d'emploi :
     //   Fournir un pointeur vers le point de départ et un autre vers le point
-    // d'arrivé correspondant au parcours souhaité
+    //   d'arrivé correspondant au parcours souhaité
     // Contrat :
     //   Nécessite que les chaînes de caractère pointées soient allouées
-
-    void AdvancedSearch(const char *position, const char *&target,
-                        const char *&listTrajetsCourrants);
-    // Mode d'emploi :
-    //
 
     //-------------------------------------------- Constructeurs - destructeur
     Catalogue();
@@ -66,6 +61,15 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
+    void advancedSearch(etape *&itineraire, const char &posAct,
+                        const char &target) const;
+    // Mode d'emploi :
+    //   Mettre itinéraire à NULL pour la première récursivité
+    //   Fournir une référence vers le point de départ et une autre vers le point
+    //   d'arrivé correspondant au parcours souhaité
+    // Contrat :
+    //   On priviligie la rapidité à la mémoire par l'utilisation d'une liste
+    //   doublement chaînée au lieu d'une simple
 
     //----------------------------------------------------- Attributs protégés
 
