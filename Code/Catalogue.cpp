@@ -113,7 +113,12 @@ Catalogue::~Catalogue()
 void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
                                const char &target) const
 // Algorithme :
-//
+//   On utilise une liste doublement chaînée permettant de stocker le chemin
+//   en cours
+//   Parcours en profondeur des chemins possibles. Dès qu'on chemin n'est
+//   pas possible on remonte d'un cran et on essaye les autres possibilités
+//   Si l'objectif est atteinte on affiche le chemin puis on continue la
+//   recherche pour d'autres possibilités
 {
     //on crée le maillont supp
     etape nouvelleEtape;
@@ -127,8 +132,7 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
             {
                 etape *parcoursList = itineraire;
                 bool premiereIter = true;
-                while ((parcoursList != itineraire || premiereIter)
-                        && parcoursList != NULL)
+                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL)
                 {
                     premiereIter = false;
                     (parcoursList->way)->Afficher();
@@ -143,8 +147,7 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
                 etape *parcoursList = itineraire;
                 bool premiereIter = true;
                 bool dejaPresent = false;
-                while ((parcoursList != itineraire || premiereIter)
-                        && parcoursList != NULL && dejaPresent == false)
+                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL && dejaPresent == false)
                 {
                     premiereIter = false;
                     if (parcoursList->way == listTrajet[i])
@@ -177,7 +180,7 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
             }
         }
     }
-    //On supprime last
+    //On supprime le dernier
     if (itineraire != NULL)
     {
         if (itineraire->next != itineraire)
