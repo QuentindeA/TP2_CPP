@@ -76,8 +76,8 @@ void Catalogue::Search(const char *startPoint, const char *endPoint) const
     }
     cout << endl;
     cout << "technique 2 :" << endl;
-    etape *itinéraire = NULL;
-    advancedSearch(itinéraire, *startPoint, *endPoint);
+    etape *itineraire = NULL;
+    advancedSearch(itineraire, *startPoint, *endPoint);
 } //----- Fin de Search
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -118,7 +118,7 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
     //on crée le maillont supp
     etape nouvelleEtape;
 
-    for (int i = 0; i < nbTrajet; ++i)
+    for (unsigned int i = 0; i < nbTrajet; ++i)
     {
         if (strcmp(&posAct, listTrajet[i]->GetStart()) == 0)
         {
@@ -127,12 +127,14 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
             {
                 etape *parcoursList = itineraire;
                 bool premiereIter = true;
-                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL)
+                while ((parcoursList != itineraire || premiereIter)
+                        && parcoursList != NULL)
                 {
                     premiereIter = false;
                     (parcoursList->way)->Afficher();
                     parcoursList = parcoursList->next;
                 }
+                listTrajet[i]->Afficher();
                 cout << endl;
             }
             else
@@ -141,7 +143,8 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
                 etape *parcoursList = itineraire;
                 bool premiereIter = true;
                 bool dejaPresent = false;
-                while ((parcoursList != itineraire || premiereIter) && parcoursList != NULL && dejaPresent == false)
+                while ((parcoursList != itineraire || premiereIter)
+                        && parcoursList != NULL && dejaPresent == false)
                 {
                     premiereIter = false;
                     if (parcoursList->way == listTrajet[i])
@@ -169,7 +172,7 @@ void Catalogue::advancedSearch(etape *&itineraire, const char &posAct,
                     }
 
                     //on réitère en profondeur
-                    advancedSearch(itineraire, *(nouvelleEtape.way)->GetStart(), target);
+                    advancedSearch(itineraire, *(nouvelleEtape.way)->GetEnd(), target);
                 }
             }
         }
