@@ -5,6 +5,7 @@
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "saveFunctions.h"
 
 using namespace std;
 
@@ -55,7 +56,7 @@ int main()
             search(monCatalogue);
             break;
         case '5':
-            loadFromFile(monCatalogue);
+            //loadFromFile(monCatalogue);
             break;
         case '6':
             saveToFile(monCatalogue);

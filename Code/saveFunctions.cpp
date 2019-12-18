@@ -1,8 +1,11 @@
 #include "saveFunctions.h"
-#include <iostream>
-#include <ofstream>
 
-use namespace std;
+#include <iostream>
+#include <fstream>
+#include "Catalogue.h"
+#include "Trajet.h"
+
+using namespace std;
 
 void saveToFile(Catalogue *monCatalogue)
 {
@@ -41,4 +44,22 @@ void saveToFile(Catalogue *monCatalogue)
     }
 }
 
-bool saveAll(ostream)
+bool saveAll(ofstream &outFile, Catalogue *monCatalogue)
+{
+    return true;
+}
+
+bool saveByTrajectType(ofstream &outFile, Catalogue * monCatalogue)
+{
+    return true;
+}
+
+bool saveByCityName(ofstream &outFile, Catalogue * monCatalogue)
+{
+    return true;
+}
+
+bool saveInterval(ofstream &outFile, Catalogue * monCatalogue)
+{
+    return true;
+}
