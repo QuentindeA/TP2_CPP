@@ -6,7 +6,7 @@ RMFLAGS=-f
 CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11
 DEBUGFLAGS =  -DMAP -g
 EDLFLAGS=
-INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h saveFunctions.h
+INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h saveFunctions.h loadFunctions.h
 REAL=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
 EXE=demo
@@ -26,6 +26,7 @@ Trajet.o : Trajet.cpp Trajet.h
 TrajetSimple.o : TrajetSimple.cpp TrajetSimple.h
 TrajetCompose.o : TrajetCompose.cpp TrajetCompose.h
 saveFunctions.o : saveFunctions.cpp saveFunctions.h
+loadFunctions.o :  loadFunctions.cpp loadFunctions.h
 
 %.o : %.cpp
 	$(ECHO) compil de \<$@\>

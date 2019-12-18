@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <fstream>
+#include "Catalogue.h"
+#include "TrajetSimple.h"
+#include "TrajetCompose.h"
 
 void loadFromFile(Catalogue *monCatalogue);
 const TrajetSimple *makeTrajetSimple(std::string readLine);

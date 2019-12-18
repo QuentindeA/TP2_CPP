@@ -10,7 +10,7 @@ void loadFromFile(Catalogue *monCatalogue)
 
     cout << "Entrez le nom du fichier :" << endl;
     cin >> filePath;
-    ifstream in(filepath);
+    ifstream in(filePath);
     in >> newLine;
     while(!newLine[0].eof())
     {
