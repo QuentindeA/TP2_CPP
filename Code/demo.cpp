@@ -1,11 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> e1fabc30c895f49d268c25ac7193eb7cb4f86d94
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -171,7 +167,7 @@ void saveToFile(Catalogue *monCatalogue)
     cin >> choice;
     switch(choice)
     {
-
+        
     }
 
 
