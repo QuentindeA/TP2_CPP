@@ -162,7 +162,7 @@ void saveToFile(Catalogue *monCatalogue)
     cout << "Nom du fichier de sauvegarde : ";
     string filePath;
     cin >> filePath;
-    ofstream out(fileName);
+    ofstream out(filePath);
     //Fin initialisation
 
     //MENU
