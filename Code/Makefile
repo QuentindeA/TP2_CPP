@@ -21,7 +21,7 @@ debug: CFLAGS += $(DEBUGFLAGS)
 debug: $(EXE)
 
 demo.o : demo.cpp
-Catalogue.o : Catalogue.cpp Catalogue.o
+Catalogue.o : Catalogue.cpp Catalogue.h
 Trajet.o : Trajet.cpp Trajet.h
 TrajetSimple.o : TrajetSimple.cpp TrajetSimple.h
 TrajetCompose.o : TrajetCompose.cpp TrajetCompose.h
