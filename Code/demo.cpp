@@ -14,11 +14,6 @@ void separator();
 const TrajetSimple *makeTrajetSimple();
 const TrajetCompose *makeTrajetCompose();
 void search(Catalogue *monCatalogue);
-void loadFromFile(Catalogue *monCatalogue);
-void saveToFile(Catalogue *monCatalogue);
-
-
-
 
 int main()
 {
@@ -142,44 +137,4 @@ const TrajetCompose *makeTrajetCompose()
     }
 
     return new const TrajetCompose(mesTrajetsSimples, nbTrajetSimple);
-}
-
-void loadFromFile(Catalogue *monCatalogue)
-{
-    string filePath;
-    string newLine;
-
-    cout << "Entrez le nom du fichier :" << endl;
-    cin >> filePath;
-    ifstream in(filepath);
-    in >> newLine;
-    if (newLine[0] = 's')
-    {
-            newLine.split('|');
-            makeTrajetSimple();
-    }
-    monCatalogue.AddTrajet();
-}
-
-void saveToFile(Catalogue *monCatalogue)
-{
-    //initialisation du fichier
-    cout << "Nom du fichier de sauvegarde : ";
-    string filePath;
-    cin >> filePath;
-    ofstream out(filePath);
-    //Fin initialisation
-
-    //MENU
-    int choice;
-    cout << "Choix de la façon de sauvegarde";
-    cin >> choice;
-    switch(choice)
-    {
-
-    }
-
-
-
-
 }
