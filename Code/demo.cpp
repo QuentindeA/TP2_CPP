@@ -1,6 +1,11 @@
 #include <iostream>
 #include <fstream>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e1fabc30c895f49d268c25ac7193eb7cb4f86d94
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -15,6 +20,9 @@ const TrajetCompose *makeTrajetCompose();
 void search(Catalogue *monCatalogue);
 void loadFromFile(Catalogue *monCatalogue);
 void saveToFile(Catalogue *monCatalogue);
+
+
+
 
 int main()
 {
@@ -150,5 +158,8 @@ void loadFromFile(Catalogue *monCatalogue)
 
 void saveToFile(Catalogue *monCatalogue)
 {
-
+  string fileName;
+  cin >> fileName;
+  ofstream out(fileName.c_str());
+  out << fileName << endl;
 }
