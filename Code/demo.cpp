@@ -1,14 +1,10 @@
 #include <iostream>
 #include <fstream>
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e1fabc30c895f49d268c25ac7193eb7cb4f86d94
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "splitString.h" //steal from stackoverflow :
 
 using namespace std;
 
@@ -150,33 +146,25 @@ const TrajetCompose *makeTrajetCompose()
 
 void loadFromFile(Catalogue *monCatalogue)
 {
-    string filepath;
+    string filePath;
+    string newLine;
+
     cout << "Entrez le nom du fichier :" << endl;
-    cin >> filepath;
+    cin >> filePath;
     ifstream in(filepath);
+    in >> newLine;
+    if (newLine[0] = 's')
+    {
+            newLine.split('|');
+            makeTrajetSimple();
+    }
+    monCatalogue.AddTrajet();
 }
 
 void saveToFile(Catalogue *monCatalogue)
 {
-    //initialisation du fichier
-    const string extension = ".txt";
-    cout << "Nom du fichier de sauvegarde : ";
     string fileName;
     cin >> fileName;
-    fileName += extension;
-    ofstream out(fileName);
-    //Fin initialisation
-
-    //MENU
-    int choice;
-    cout << "Choix de la façon de sauvegarde";
-    cin >> choice;
-    switch(choice)
-    {
-
-    }
-
-
-
-
+    ofstream out(fileName.c_str());
+    out << fileName << endl;
 }
