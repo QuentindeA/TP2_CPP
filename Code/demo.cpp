@@ -5,6 +5,7 @@
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
+#include "loadFunctions.h"
 
 using namespace std;
 
