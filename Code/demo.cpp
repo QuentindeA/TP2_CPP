@@ -163,8 +163,23 @@ void loadFromFile(Catalogue *monCatalogue)
 
 void saveToFile(Catalogue *monCatalogue)
 {
-    string fileName;
-    cin >> fileName;
-    ofstream out(fileName.c_str());
-    out << fileName << endl;
+    //initialisation du fichier
+    cout << "Nom du fichier de sauvegarde : ";
+    string filePath;
+    cin >> filePath;
+    ofstream out(filePath);
+    //Fin initialisation
+
+    //MENU
+    int choice;
+    cout << "Choix de la façon de sauvegarde";
+    cin >> choice;
+    switch(choice)
+    {
+
+    }
+
+
+
+
 }
