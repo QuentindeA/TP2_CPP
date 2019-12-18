@@ -6,6 +6,7 @@
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
 #include "loadFunctions.h"
+#include "saveFunctions.h"
 
 using namespace std;
 
