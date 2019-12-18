@@ -12,35 +12,35 @@ void loadFromFile(Catalogue *monCatalogue)
     cin >> filePath;
     ifstream in(filePath);
     in >> newLine;
-    while(!newLine[0].eof())
+    while(newLine[0] != EOF)
     {
-    if (newLine[0] = 's')
-        monCatalogue.addTrajet(makeTrajetSimple(newLine));
-    else if (newLine[0] = 'c')
-    {
-		int len = newLine.length-1
-		char * nbTrajetString[len];
-		for( int i = 0; i < len; ++i)
-		{
-			nbTrajetString[i] = newLine[i+2];
-		}
-		int nbTrajet = atoi(nbTrajetString);
-        monCatalogue.addTrajet(makeTrajetCompose(newLine, nbTrajet, in));
-	}
-}
+        if (newLine[0] == 's')
+            monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+        else if (newLine[0] == 'c')
+        {
+    		int len = newLine.length()-1;
+    		char * nbTrajetString = new char[len];
+    		for( int i = 0; i < len; ++i)
+    		{
+    			nbTrajetString[i] = newLine[i+2];
+    		}
+    		int nbTrajet = atoi(nbTrajetString);
+            delete[] nbTrajetString;
+            monCatalogue->AddTrajet(makeTrajetCompose(nbTrajet, in));
+    	}
+    }
 
-    monCatalogue.AddTrajet();
 }
 
 const TrajetSimple *makeTrajetSimple(string &readLine)
 {
-	int lenLine = readLine.length;
+	int lenLine = readLine.length();
 	int offset;
 
-	int option=0; //0:start 1:end 2:mean 
-    char *startPoint = char[lenLine];
-    char *endPoint = char[lenLine];
-    char *mean = char[lenLine];
+	int option=0; //0:start 1:end 2:mean
+    char *startPoint = new char[lenLine];
+    char *endPoint = new char[lenLine];
+    char *mean = new char[lenLine];
 
 	for(int i = 0; i < lenLine; ++i)
 	{
@@ -69,22 +69,26 @@ const TrajetSimple *makeTrajetSimple(string &readLine)
 
     const TrajetSimple *ts = new const TrajetSimple(startPoint, endPoint, mean);
 
+    delete[] startPoint;
+    delete[] endPoint;
+    delete[] mean;
+
     return ts;
 }
 
-const TrajetCompose *makeTrajetCompose(string newLine, int nbTrajet, fstream &in)
+const TrajetCompose *makeTrajetCompose(int nbTrajet, ifstream &in)
 {
 	string newLine;
-	
-	const TrajetSimple **mesTrajetsSimples = new const TrajetSimple *[nbTrajetSimple];
+
+	const TrajetSimple **mesTrajetsSimples = new const TrajetSimple *[nbTrajet];
 
 	for(int i = 0; i < nbTrajet; ++i)
 	{
 		in >> newLine;
 		//if (newLine[0] = 's')
 			mesTrajetsSimples[i] = makeTrajetSimple(newLine);
-		//else 
+		//else
 		//	mesTrajetsSimples[i] = makeTrajetCompose(newLine, in);
 	}
-	return new TrajetCompose(mesTrajetsSimples);
+	return new TrajetCompose(mesTrajetsSimples, nbTrajet);
 }

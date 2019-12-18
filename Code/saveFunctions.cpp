@@ -1,9 +1,10 @@
-#include "saveFunctions.h"
-
 #include <iostream>
 #include <fstream>
+#include <cstring>
+
 #include "Catalogue.h"
 #include "Trajet.h"
+#include "saveFunctions.h"
 
 using namespace std;
 
