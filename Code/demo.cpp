@@ -159,11 +159,9 @@ void loadFromFile(Catalogue *monCatalogue)
 void saveToFile(Catalogue *monCatalogue)
 {
     //initialisation du fichier
-    const string extension = ".txt";
     cout << "Nom du fichier de sauvegarde : ";
-    string fileName;
-    cin >> fileName;
-    fileName += extension;
+    string filePath;
+    cin >> filePath;
     ofstream out(fileName);
     //Fin initialisation
 
