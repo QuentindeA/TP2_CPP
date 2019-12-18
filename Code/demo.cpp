@@ -163,7 +163,9 @@ void saveToFile(Catalogue *monCatalogue)
 
     //MENU
     int choice;
-    cout << "Choix de la façon de sauvegarde";
+    cout << "Choix de la façon de sauvegarde" << endl;
+    cout << "1 : Sauvegarder tout" << endl;
+    cout << "2 : sauvegarde "
     cin >> choice;
     switch(choice)
     {
@@ -178,8 +180,4 @@ void saveToFile(Catalogue *monCatalogue)
         default:
                 break;
     }
-
-
-
-
 }
