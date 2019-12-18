@@ -15,7 +15,7 @@ const TrajetSimple *makeTrajetSimple();
 const TrajetCompose *makeTrajetCompose();
 void search(Catalogue *monCatalogue);
 void loadFromFile(Catalogue *monCatalogue);
-void saveToFile(Catalogue *monCatalogue);
+
 
 
 
@@ -150,34 +150,4 @@ void loadFromFile(Catalogue *monCatalogue)
     cout << "Entrez le nom du fichier :" << endl;
     cin >> filepath;
     ifstream in(filepath);
-}
-
-void saveToFile(Catalogue *monCatalogue)
-{
-    //initialisation du fichier
-    cout << "Nom du fichier de sauvegarde : ";
-    string filePath;
-    cin >> filePath;
-    ofstream out(filePath);
-    //Fin initialisation
-
-    //MENU
-    int choice;
-    cout << "Choix de la façon de sauvegarde" << endl;
-    cout << "1 : Sauvegarder tout" << endl;
-    cout << "2 : sauvegarde "
-    cin >> choice;
-    switch(choice)
-    {
-        case 1:
-                break;
-        case 2:
-                break;
-        case 3:
-                break;
-        case 4:
-                break;
-        default:
-                break;
-    }
 }
