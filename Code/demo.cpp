@@ -1,4 +1,8 @@
 #include <iostream>
+#include <fstream>
+
+
+
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -148,5 +152,8 @@ void loadFromFile(Catalogue *monCatalogue)
 
 void saveToFile(Catalogue *monCatalogue)
 {
-
+  string fileName;
+  cin >> fileName;
+  ofstream out(fileName.c_str());
+  ofstream << fileName << endl;
 }
