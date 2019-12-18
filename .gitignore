@@ -11,3 +11,4 @@ Tests/*.o
 Tests/*~
 
 Docs/.*
+B1_4/*
