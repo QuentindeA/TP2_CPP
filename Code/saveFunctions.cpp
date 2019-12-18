@@ -1,4 +1,8 @@
 #include "saveFunctions.h"
+#include <iostream>
+#include <ofstream>
+
+use namespace std;
 
 void saveToFile(Catalogue *monCatalogue)
 {
@@ -6,7 +10,7 @@ void saveToFile(Catalogue *monCatalogue)
     cout << "Nom du fichier de sauvegarde : ";
     string filePath;
     cin >> filePath;
-    ofstream out(filePath);
+    ofstream outFile(filePath);
     //Fin initialisation
 
     //MENU
@@ -20,15 +24,21 @@ void saveToFile(Catalogue *monCatalogue)
     switch(choice)
     {
         case 1:
-
+                saveAll(outFile, monCatalogue);
                 break;
         case 2:
+                saveByTrajectType(outFile, monCatalogue);
                 break;
         case 3:
+                saveByCityName(outFile, monCatalogue);
                 break;
         case 4:
+                saveInterval(outFile, monCatalogue);
                 break;
         default:
+                cout << "Votre choix n'est pas dans les possibilitees." << endl;
                 break;
     }
 }
+
+bool saveAll(ostream)
