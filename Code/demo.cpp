@@ -155,5 +155,5 @@ void saveToFile(Catalogue *monCatalogue)
   string fileName;
   cin >> fileName;
   ofstream out(fileName.c_str());
-  ofstream << fileName << endl;
+  out << fileName << endl;
 }
