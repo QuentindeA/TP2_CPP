@@ -1,3 +1,6 @@
+//Taken from stackOerflow
+// https://codereview.stackexchange.com/questions/206297/c-split-function-equivalent-to-python-string-split
+
 
 #if ! defined ( SPLITSTRING_H )
 #define SPLITSTRING_H
