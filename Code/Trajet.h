@@ -29,10 +29,12 @@ class Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    virtual void Save(std::string &textToSave) const = 0;
+
     virtual const char * GetStart ( ) const;
-    
+
     virtual const char * GetEnd ( ) const;
-    
+
     virtual void Afficher ( ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -44,7 +46,7 @@ public:
     //   les chaines pointées par startPoint et endPoint doivent être allouées
 
     virtual ~Trajet ( );
-    
+
 //------------------------------------------------------------------ PRIVE
 
 protected:

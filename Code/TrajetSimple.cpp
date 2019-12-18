@@ -24,6 +24,13 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+void TrajetSimple::Save(string &textToSave) const
+{
+    textToSave = textToSave + "s|" + start + "|" + end + "|" + mean + "\n";
+}
+
+
+
 void TrajetSimple::Afficher ( ) const
 {
     Trajet::Afficher();

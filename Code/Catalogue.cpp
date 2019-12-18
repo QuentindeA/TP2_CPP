@@ -24,6 +24,19 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+const Trajet ** Catalogue:: getListTrajet()
+{
+    return listTrajet;
+}
+
+
+unsigned int Catalogue::getNbTrajet() const
+{
+    return nbTrajet;
+}
+
+
+
 void Catalogue::AddTrajet(const Trajet *newTrajet)
 // Algorithme :
 //  Si la liste est emplie : avant d'insérer un nouvel élément on crée une

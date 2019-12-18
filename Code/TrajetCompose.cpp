@@ -23,19 +23,30 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+void TrajetCompose::Save(string &textToSave) const
+// Attend une chaine vide
+{
+    textToSave += "c|";
+    textToSave += nbTrajet;
+    textToSave += "\n";
+    for(unsigned int i = 0; i<nbTrajet;i++)
+    {
+        listTrajet[i]->Save(textToSave);
+    }
+}
+
+
 void TrajetCompose::Afficher() const
 {
     int unsigned i;
     for (i = 0; i < nbTrajet - 1; i++)
     {
-        cout << "de " << listTrajet[i]->GetStart();
-        cout << " a " << listTrajet[i]->GetEnd();
+        listTrajet[i]->Afficher();
         cout << " - ";
     }
     if (nbTrajet > 0)
     {
-        cout << "de " << listTrajet[nbTrajet - 1]->GetStart();
-        cout << " a " << listTrajet[nbTrajet - 1]->GetEnd();
+        listTrajet[nbTrajet - 1]->Afficher();
         cout << endl;
     }
 
