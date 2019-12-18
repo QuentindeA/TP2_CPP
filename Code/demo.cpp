@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
@@ -140,7 +142,10 @@ const TrajetCompose *makeTrajetCompose()
 
 void loadFromFile(Catalogue *monCatalogue)
 {
-
+    string filepath;
+    cout << "Entrez le nom du fichier :" << endl;
+    cin >> filepath;
+    ifstream in(filepath);
 }
 
 void saveToFile(Catalogue *monCatalogue)
