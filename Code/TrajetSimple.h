@@ -30,6 +30,9 @@ class TrajetSimple : public Trajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    void Save(std::string &textToSave) const;
+
+
     void Afficher ( ) const;
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -43,6 +43,11 @@ public:
     // Contrat :
     //   Le trajet pointé doit être alloué
 
+
+    unsigned int getNbTrajet() const;
+
+    const Trajet ** getListTrajet();
+
     void Afficher() const;
 
     void Search(const char *startPoint, const char *endPoint) const;
