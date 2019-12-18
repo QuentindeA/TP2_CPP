@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 
+
 #include "Catalogue.h"
 #include "TrajetSimple.h"
 #include "TrajetCompose.h"
-#include "splitString.h" //steal from stackoverflow :
 
 using namespace std;
 
