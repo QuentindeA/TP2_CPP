@@ -12,6 +12,9 @@ const TrajetSimple *makeTrajetSimple();
 const TrajetCompose *makeTrajetCompose();
 void search(Catalogue *monCatalogue);
 
+
+
+
 int main()
 {
     bool quit = false;
