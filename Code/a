@@ -1,2 +1,7 @@
-s|Tre|Ert|5
+s|Lyon|Bordeau|Train
 
+c|2
+s|Lyon|Marseille|Bateau
+s|Marseille|Paris|Avion
+
+s|Lyon|Paris|Avion

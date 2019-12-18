@@ -12,7 +12,7 @@ void loadFromFile(Catalogue *monCatalogue)
     cin >> filePath;
     ifstream in(filePath);
     in >> newLine;
-    while(newLine[0] != EOF)
+    while(!in.eof())
     {
         if (newLine[0] == 's')
             monCatalogue->AddTrajet(makeTrajetSimple(newLine));
@@ -28,6 +28,7 @@ void loadFromFile(Catalogue *monCatalogue)
             delete[] nbTrajetString;
             monCatalogue->AddTrajet(makeTrajetCompose(nbTrajet, in));
     	}
+        in >> newLine;
     }
 
 }
@@ -35,14 +36,14 @@ void loadFromFile(Catalogue *monCatalogue)
 const TrajetSimple *makeTrajetSimple(string &readLine)
 {
 	int lenLine = readLine.length();
-	int offset;
+	int offset = 2;
 
 	int option=0; //0:start 1:end 2:mean
     char *startPoint = new char[lenLine];
     char *endPoint = new char[lenLine];
     char *mean = new char[lenLine];
 
-	for(int i = 0; i < lenLine; ++i)
+	for(int i = 2; i < lenLine; ++i)
 	{
 		char nextC = readLine[i];
 		if(nextC != '|')
@@ -50,7 +51,7 @@ const TrajetSimple *makeTrajetSimple(string &readLine)
 			switch (option)
 			{
 				case(0):
-					startPoint[i] = nextC;
+					startPoint[i-offset] = nextC;
 					break;
 				case(1):
 					endPoint[i-offset] = nextC;
@@ -62,7 +63,19 @@ const TrajetSimple *makeTrajetSimple(string &readLine)
 		}
 		else
 		{
-			offset = i+1;
+            switch (option)
+			{
+                case(0):
+                    startPoint[i-offset] = '\0';
+                    break;
+                case(1):
+                    endPoint[i-offset] = '\0';
+                    break;
+                default:
+                    mean[i-offset] = '\0';
+                    break;
+            }
+            offset = i+1;
 			option++;
 		}
 	}

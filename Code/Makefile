@@ -4,7 +4,7 @@ COMP=g++
 EDL=g++
 RMFLAGS=-f
 CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11
-DEBUGFLAGS =  -DMAP -g
+DEBUGFLAGS= -DMAP -g
 EDLFLAGS=
 INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h saveFunctions.h loadFunctions.h
 REAL=$(INT:.h=.cpp)
@@ -17,7 +17,7 @@ CLEAN=clean
 
 default : $(EXE)
 
-debug: CFLAGS += $(DEBUGFLAGS)
+debug: CPPFLAGS+= $(DEBUGFLAGS)
 debug: $(EXE)
 
 demo.o : demo.cpp
