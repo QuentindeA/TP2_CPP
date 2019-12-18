@@ -11,12 +11,14 @@ void separator();
 const TrajetSimple *makeTrajetSimple();
 const TrajetCompose *makeTrajetCompose();
 void search(Catalogue *monCatalogue);
+void loadFromFile(Catalogue *monCatalogue);
+void saveToFile(Catalogue *monCatalogue);
 
 int main()
 {
     bool quit = false;
     //char answer = '0';
-    char *answer = new char[MAX_LENGTH];
+    string answer;
 
     Catalogue *monCatalogue = new Catalogue();
 
@@ -28,7 +30,9 @@ int main()
         cout << " 2 - Ajout d'un trajet compose" << endl;
         cout << " 3 - Affichage du catalogue" << endl;
         cout << " 4 - Recherche d'un parcours" << endl;
-        cout << " 5 - Quitter" << endl;
+        cout << " 5 - Charger des trajets depuis un fichier" << endl;
+        cout << " 6 - Sauvegarder le catatlogue dans un fichier" << endl;
+        cout << " 7 - Quitter" << endl;
 
         cout << "   Reponse : ";
         cin >> answer;
@@ -50,14 +54,19 @@ int main()
             search(monCatalogue);
             break;
         case '5':
+            loadFromFile(monCatalogue);
+            break;
+        case '6':
+            saveToFile(monCatalogue);
+            break;
+        case '7':
             quit = true;
             break;
         default:
-            cout << "Inscrivez un chiffre entre 1 et 5" << endl;
+            cout << "Inscrivez un chiffre entre 1 et 7" << endl;
             break;
         }
     }
-    delete[] answer;
     delete monCatalogue;
 
     return 0;
@@ -127,4 +136,14 @@ const TrajetCompose *makeTrajetCompose()
     }
 
     return new const TrajetCompose(mesTrajetsSimples, nbTrajetSimple);
+}
+
+void loadFromFile(Catalogue *monCatalogue)
+{
+
+}
+
+void saveToFile(Catalogue *monCatalogue)
+{
+
 }
