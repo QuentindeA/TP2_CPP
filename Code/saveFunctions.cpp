@@ -36,6 +36,7 @@ void saveToFile(Catalogue *monCatalogue)
                 saveByCityName(outFile, monCatalogue);
                 break;
         case 4:
+        {
                 int debut = 0;
                 int fin = 0;
                 cout << "Choisissez botre intervalle :" << endl;
@@ -43,13 +44,14 @@ void saveToFile(Catalogue *monCatalogue)
                 cin >> fin;
                 saveAll(outFile, monCatalogue, debut, fin);
                 break;
+        }
         default:
                 cout << "Votre choix n'est pas dans les possibilitees." << endl;
                 break;
     }
 }
 
-bool saveAll(ofstream &outFile, Catalogue * monCatalogue, unsigned int begin = 0, unsigned int end = 0)
+bool saveAll(ofstream &outFile, Catalogue * monCatalogue, unsigned int begin, unsigned int end)
 {
     string text = "";
     if (end == 0) end = monCatalogue->getNbTrajet();
