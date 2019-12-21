@@ -35,6 +35,8 @@ public:
 
     virtual const char * GetEnd ( ) const;
 
+    const bool getTrajectType ( ) const;
+
     virtual void Afficher ( ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -53,6 +55,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     char * start;
     char * end;
+    bool trajectType; // 0 = TS ; 1 = TC
 
 };
 

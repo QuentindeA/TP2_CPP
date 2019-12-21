@@ -50,6 +50,7 @@ TrajetSimple::TrajetSimple ( const char* startPoint, const char* endPoint,
 
     mean = new char[strlen(transportMean)+1];
     strcpy(mean,transportMean);
+    trajectType = false;
 
 } //----- Fin de TrajetSimple (constructeur de copie)
 

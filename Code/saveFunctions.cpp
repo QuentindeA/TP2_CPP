@@ -66,11 +66,21 @@ bool saveAll(ofstream &outFile, Catalogue * monCatalogue, unsigned int begin, un
 
 bool saveByTrajectType(ofstream &outFile, Catalogue * monCatalogue)
 {
+    int choiceType = 0;
+    bool type = false;
+    cout << "1 : sauvegarder les trajetSimple" << endl;
+    cout << "2 : sauvegarder les TrajetCompose"<< endl;
+    cin >> choiceType;
+    if(choiceType == 2) type = true;
+
     string text = "";
     for(unsigned int i=0; i<monCatalogue->getNbTrajet(); i++ ){
-        monCatalogue->getListTrajet()[i]->Save(text);
-        outFile << text << endl;
-        text = "";
+        if(monCatalogue->getListTrajet()[i]->getTrajectType() == type)
+        {
+            monCatalogue->getListTrajet()[i]->Save(text);
+            outFile << text << endl;
+            text = "";
+        }
     }
     return true;
 }
@@ -125,10 +135,5 @@ bool saveByCityName(ofstream &outFile, Catalogue * monCatalogue)
         }
 
     }
-    return true;
-}
-
-bool saveInterval(ofstream &outFile, Catalogue * monCatalogue)
-{
     return true;
 }

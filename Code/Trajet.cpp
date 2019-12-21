@@ -33,6 +33,12 @@ const char *Trajet::GetEnd() const
     return end;
 } //----- Fin de Méthode
 
+const bool Trajet::getTrajectType ( ) const
+{
+    return trajectType;
+}
+
+
 void Trajet::Afficher() const
 {
     cout << "de " << start << " a " << end;

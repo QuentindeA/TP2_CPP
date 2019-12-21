@@ -64,6 +64,8 @@ TrajetCompose::TrajetCompose(const TrajetSimple **list,
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetCompose>" << endl;
 #endif
+
+    trajectType = true;
 } //----- Fin de Ensemble
 
 TrajetCompose::~TrajetCompose()
