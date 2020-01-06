@@ -34,7 +34,7 @@ int main()
         cout << " 3 - Affichage du catalogue" << endl;
         cout << " 4 - Recherche d'un parcours" << endl;
         cout << " 5 - Charger des trajets depuis un fichier" << endl;
-        cout << " 6 - Sauvegarder le catatlogue dans un fichier" << endl;
+        cout << " 6 - Sauvegarder le catatalogue dans un fichier" << endl;
         cout << " 7 - Quitter" << endl;
 
         cout << "   Reponse : ";
