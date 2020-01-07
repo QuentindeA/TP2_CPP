@@ -27,7 +27,7 @@ void TrajetCompose::Save(string &textToSave) const
 // Attend une chaine vide
 {
     textToSave += "c|";
-    textToSave += nbTrajet;
+    textToSave += to_string(nbTrajet);
     textToSave += "\n";
     for(unsigned int i = 0; i<nbTrajet;i++)
     {

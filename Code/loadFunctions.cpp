@@ -52,38 +52,56 @@ void loadAll(ifstream &inFile, Catalogue * monCatalogue, unsigned int debut, uns
 {
     string newLine;
     unsigned int numeroTrajet = 0;
-    inFile >> newLine;
-
+    //inFile >> newLine;
+    getline(inFile, newLine, '|');
     while(!inFile.eof())
     {
         if ( numeroTrajet >= debut && ( fin == 0 || numeroTrajet <= fin ) )
         {
-            cout << newLine << endl;
-            cout << numeroTrajet << " " << debut << " " << fin << endl;
-            if (newLine[0] == 's')
+            if (newLine == "s")
             {
-                monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+                //monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+                string start;
+                getline(inFile, start, '|');
+                string end;
+                getline(inFile, end, '|');
+                string tMean;
+                getline(inFile, tMean);
+
+                monCatalogue->AddTrajet(new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str()));
                 numeroTrajet++;
             }
-            else if (newLine[0] == 'c')
+            else if (newLine == "c")
             {
-                int len = newLine.length()-1;
-                char * nbTrajetString = new char[len];
-                for( int i = 0; i < len; ++i)
+                string slen;
+                getline(inFile, slen);
+                int nbTrajet = atoi(slen.c_str());
+                const TrajetSimple **list = new const TrajetSimple *[nbTrajet];
+                for(int i = 0; i<nbTrajet; ++i)
                 {
-                    nbTrajetString[i] = newLine[i+2];
+                    getline(inFile, newLine, '|');
+                    string start;
+                    getline(inFile, start, '|');
+                    string end;
+                    getline(inFile, end, '|');
+                    string tMean;
+                    getline(inFile, tMean);
+                    list[i] = new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str());
                 }
-                int nbTrajet = atoi(nbTrajetString);
-                delete[] nbTrajetString;
-                monCatalogue->AddTrajet(makeTrajetCompose(nbTrajet, inFile));
+                monCatalogue->AddTrajet(new TrajetCompose(list, nbTrajet));
                 numeroTrajet++;
+
             }
+            getline(inFile, newLine, '!');
+            getline(inFile, newLine);
+
         }
         else
         {
             if ( numeroTrajet < debut )
             {
-                nextTrajet(inFile);
+                getline(inFile, newLine, '!');
+                getline(inFile, newLine);
                 numeroTrajet++;
             }
             else
@@ -91,7 +109,8 @@ void loadAll(ifstream &inFile, Catalogue * monCatalogue, unsigned int debut, uns
                 break;
             }
         }
-        inFile >> newLine;
+
+        getline(inFile, newLine, '|');
     }
 }
 

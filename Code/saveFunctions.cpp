@@ -58,7 +58,7 @@ bool saveAll(ofstream &outFile, Catalogue * monCatalogue, unsigned int begin, un
     if (end == 0) end = monCatalogue->getNbTrajet();
     for(unsigned int i=begin; i<end; ++i ){
         monCatalogue->getListTrajet()[i]->Save(text);
-        outFile << text << endl;
+        outFile << text << "-" << endl;
         text = "";
     }
     return true;
@@ -78,7 +78,7 @@ bool saveByTrajectType(ofstream &outFile, Catalogue * monCatalogue)
         if(monCatalogue->getListTrajet()[i]->getTrajectType() == type)
         {
             monCatalogue->getListTrajet()[i]->Save(text);
-            outFile << text << endl;
+            outFile << text << "-" << endl;
             text = "";
         }
     }
@@ -116,13 +116,13 @@ bool saveByCityName(ofstream &outFile, Catalogue * monCatalogue)
         if(mode == 1 && strcmp(ville1.c_str(), monCatalogue->getListTrajet()[i]->GetStart()) == 0)
         {
             monCatalogue->getListTrajet()[i]->Save(text);
-            outFile << text << endl;
+            outFile << text <<"-" << endl;
             text = "";
         }
         else if(mode == 2 && strcmp(ville1.c_str(), monCatalogue->getListTrajet()[i]->GetEnd()) == 0)
         {
             monCatalogue->getListTrajet()[i]->Save(text);
-            outFile << text << endl;
+            outFile << text << "-" << endl;
             text = "";
         }
         else if(mode == 3
@@ -130,7 +130,7 @@ bool saveByCityName(ofstream &outFile, Catalogue * monCatalogue)
                 && strcmp(ville2.c_str(), monCatalogue->getListTrajet()[i]->GetEnd()) == 0)
         {
             monCatalogue->getListTrajet()[i]->Save(text);
-            outFile << text << endl;
+            outFile << text << "-" << endl;
             text = "";
         }
 
