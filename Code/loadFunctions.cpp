@@ -6,31 +6,116 @@ using namespace std;
 void loadFromFile(Catalogue *monCatalogue)
 {
     string filePath;
-    string newLine;
 
     cout << "Entrez le nom du fichier :" << endl;
     cin >> filePath;
-    ifstream in(filePath);
-    in >> newLine;
-    while(!in.eof())
+    ifstream inFile(filePath);
+
+
+    int choice;
+    cout << "Choix de la façon de chargement" << endl;
+    cout << "1 : Charger tout" << endl;
+    cout << "2 : Chargement d'un certain type de trajet" << endl;
+    cout << "3 : Chargement selon la ville de depart et/ou d'arrivee" << endl;
+    cout << "4 : Chargement des trajets dans un intervalle" << endl;
+    cin >> choice;
+
+    switch(choice)
     {
-        if (newLine[0] == 's')
-            monCatalogue->AddTrajet(makeTrajetSimple(newLine));
-        else if (newLine[0] == 'c')
+        case 1:
+                loadAll(inFile, monCatalogue);
+                break;
+        case 2:
+                loadByTrajectType(inFile, monCatalogue);
+                break;
+        case 3:
+                loadByCityName(inFile, monCatalogue);
+                break;
+        case 4:
         {
-    		int len = newLine.length()-1;
-    		char * nbTrajetString = new char[len];
-    		for( int i = 0; i < len; ++i)
-    		{
-    			nbTrajetString[i] = newLine[i+2];
-    		}
-    		int nbTrajet = atoi(nbTrajetString);
-            delete[] nbTrajetString;
-            monCatalogue->AddTrajet(makeTrajetCompose(nbTrajet, in));
-    	}
-        in >> newLine;
+                int debut;
+                int fin;
+                cout << "Choisissez votre intervalle :" << endl;
+                cin >> debut;
+                cin >> fin;
+                loadAll(inFile, monCatalogue, debut, fin);
+                break;
+        }
+        default:
+                cout << "Votre choix n'est pas dans les possibilitees." << endl;
+                break;
     }
 
+}
+
+void loadAll(ifstream &inFile, Catalogue * monCatalogue, unsigned int debut, unsigned int fin )
+{
+    string newLine;
+    unsigned int numeroTrajet = 0;
+    inFile >> newLine;
+
+    while(!inFile.eof())
+    {
+        if ( numeroTrajet >= debut && ( fin == 0 || numeroTrajet <= fin ) )
+        {
+            cout << newLine << endl;
+            cout << numeroTrajet << " " << debut << " " << fin << endl;
+            if (newLine[0] == 's')
+            {
+                monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+                numeroTrajet++;
+            }
+            else if (newLine[0] == 'c')
+            {
+                int len = newLine.length()-1;
+                char * nbTrajetString = new char[len];
+                for( int i = 0; i < len; ++i)
+                {
+                    nbTrajetString[i] = newLine[i+2];
+                }
+                int nbTrajet = atoi(nbTrajetString);
+                delete[] nbTrajetString;
+                monCatalogue->AddTrajet(makeTrajetCompose(nbTrajet, inFile));
+                numeroTrajet++;
+            }
+        }
+        else
+        {
+            if ( numeroTrajet < debut )
+            {
+                nextTrajet(inFile);
+                numeroTrajet++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        inFile >> newLine;
+    }
+}
+
+void loadByTrajectType(ifstream &inFile, Catalogue *monCatalogue)
+{
+
+}
+
+void loadByCityName(ifstream &inFile, Catalogue *monCatalogue)
+{
+
+}
+
+void nextTrajet(ifstream &inFile)
+{
+    string newLine;
+    cout << "on passe : " << endl;
+    inFile >> newLine;
+    cout << newLine << endl;
+    while( !inFile.eof() && (newLine[0] == 's' || newLine[0] == 'c'))
+    {
+        cout << newLine << endl;
+        inFile >> newLine;
+    }
 }
 
 const TrajetSimple *makeTrajetSimple(string &readLine)
