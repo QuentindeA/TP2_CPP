@@ -50,6 +50,9 @@ void saveToFile(Catalogue *monCatalogue)
                 cout << "Votre choix n'est pas dans les possibilitees." << endl;
                 break;
     }
+
+    //Fermeture du fichier
+    outFile.close();
 }
 
 bool saveAll(ofstream &outFile, Catalogue * monCatalogue, unsigned int begin, unsigned int end)
