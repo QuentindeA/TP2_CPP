@@ -116,10 +116,148 @@ void loadAll(ifstream &inFile, Catalogue * monCatalogue, unsigned int debut, uns
 
 void loadByTrajectType(ifstream &inFile, Catalogue *monCatalogue)
 {
+    int isTrajetCompose = 0;
+    cout << "1 : Charger les trajets simples" << endl;
+    cout << "2 : Charger les trajets Composes"<< endl;
+    cin >> isTrajetCompose;
+    --isTrajetCompose;
 
+    string newLine;
+    //inFile >> newLine;
+    getline(inFile, newLine, '|');
+    while(!inFile.eof())
+    {
+        if (newLine == "s" && isTrajetCompose == 0)
+        {
+            //monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+            string start;
+            getline(inFile, start, '|');
+            string end;
+            getline(inFile, end, '|');
+            string tMean;
+            getline(inFile, tMean);
+
+            monCatalogue->AddTrajet(new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str()));
+        }
+        else if (newLine == "c" && isTrajetCompose == 1)
+        {
+            string slen;
+            getline(inFile, slen);
+            int nbTrajet = atoi(slen.c_str());
+            const TrajetSimple **list = new const TrajetSimple *[nbTrajet];
+            for(int i = 0; i<nbTrajet; ++i)
+            {
+                getline(inFile, newLine, '|');
+                string start;
+                getline(inFile, start, '|');
+                string end;
+                getline(inFile, end, '|');
+                string tMean;
+                getline(inFile, tMean);
+                list[i] = new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str());
+            }
+            monCatalogue->AddTrajet(new TrajetCompose(list, nbTrajet));
+        }
+        else
+        {
+            getline(inFile, newLine, '!');
+            getline(inFile, newLine);
+        }
+
+        getline(inFile, newLine, '|');
+    }
 }
 
 void loadByCityName(ifstream &inFile, Catalogue *monCatalogue)
 {
+    string cityNameStart;
+    string cityNameEnd;
+    int mode;
 
+    cout << "Selon :" << endl;
+    cout << "1 - La vile de depart" << endl;
+    cout << "2 - La vile de d'arrive" << endl;
+    cout << "3 - Les deux" << endl;
+    cin >> mode;
+    switch (mode) {
+        case 1:
+            cout << "Ville de depart:" << endl;
+            cin >> cityNameStart;
+            cityNameEnd = "";
+            break;
+        case 2 :
+            cityNameStart = "";
+            cout << "Ville de d'arrive:" << endl;
+            cin >> cityNameEnd;
+            break;
+        default :
+            cout << "Ville de depart:" << endl;
+            cin >> cityNameStart;
+            cout << "Ville de d'arrive:" << endl;
+            cin >> cityNameEnd;
+            break;
+    }
+
+
+    string newLine;
+    //inFile >> newLine;
+    getline(inFile, newLine, '|');
+
+    Trajet * newTrajet;
+
+    while(!inFile.eof())
+    {
+        if (newLine == "s")
+        {
+            //monCatalogue->AddTrajet(makeTrajetSimple(newLine));
+            string start;
+            getline(inFile, start, '|');
+            string end;
+            getline(inFile, end, '|');
+            string tMean;
+            getline(inFile, tMean);
+
+            newTrajet = new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str());
+
+        }
+        else if (newLine == "c")
+        {
+            cout << "trajetCompose" << endl;
+            string slen;
+            getline(inFile, slen);
+            int nbTrajet = atoi(slen.c_str());
+            const TrajetSimple **list = new const TrajetSimple *[nbTrajet];
+            for(int i = 0; i<nbTrajet; ++i)
+            {
+                getline(inFile, newLine, '|');
+                string start;
+                getline(inFile, start, '|');
+                string end;
+                getline(inFile, end, '|');
+                string tMean;
+                getline(inFile, tMean);
+                list[i] = new TrajetSimple(start.c_str(), end.c_str(), tMean.c_str());
+            }
+            newTrajet = new TrajetCompose(list, nbTrajet);
+        }
+        if ( newTrajet != NULL )
+        {
+            string newTrajetStart = string(newTrajet->GetStart());
+            string newTrajetEnd = string(newTrajet->GetEnd());
+            bool checkName = (cityNameStart == "" || (cityNameStart != "" && cityNameStart == newTrajetStart))
+                        && (cityNameEnd == "" || (cityNameEnd != "" && cityNameEnd == newTrajetEnd));
+
+            if ((newLine == "s" || newLine == "c" ) && checkName )
+            {
+                monCatalogue->AddTrajet(newTrajet);
+            }
+            else
+            {
+                delete newTrajet;
+            }
+        }
+        getline(inFile, newLine);
+        getline(inFile, newLine, '|');
+
+    }
 }
