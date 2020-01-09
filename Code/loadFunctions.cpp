@@ -10,40 +10,45 @@ void loadFromFile(Catalogue *monCatalogue)
     cout << "Entrez le nom du fichier :" << endl;
     cin >> filePath;
     ifstream inFile(filePath);
-
-
-    int choice;
-    cout << "Choix de la façon de chargement" << endl;
-    cout << "1 : Charger tout" << endl;
-    cout << "2 : Chargement d'un certain type de trajet" << endl;
-    cout << "3 : Chargement selon la ville de depart et/ou d'arrivee" << endl;
-    cout << "4 : Chargement des trajets dans un intervalle" << endl;
-    cin >> choice;
-
-    switch(choice)
+    if(!inFile.fail())
     {
-        case 1:
-                loadAll(inFile, monCatalogue);
-                break;
-        case 2:
-                loadByTrajectType(inFile, monCatalogue);
-                break;
-        case 3:
-                loadByCityName(inFile, monCatalogue);
-                break;
-        case 4:
+        int choice;
+        cout << "Choix de la façon de chargement" << endl;
+        cout << "1 : Charger tout" << endl;
+        cout << "2 : Chargement d'un certain type de trajet" << endl;
+        cout << "3 : Chargement selon la ville de depart et/ou d'arrivee" << endl;
+        cout << "4 : Chargement des trajets dans un intervalle" << endl;
+        cin >> choice;
+
+        switch(choice)
         {
-                int debut;
-                int fin;
-                cout << "Choisissez votre intervalle :" << endl;
-                cin >> debut;
-                cin >> fin;
-                loadAll(inFile, monCatalogue, debut, fin);
-                break;
+            case 1:
+                    loadAll(inFile, monCatalogue);
+                    break;
+            case 2:
+                    loadByTrajectType(inFile, monCatalogue);
+                    break;
+            case 3:
+                    loadByCityName(inFile, monCatalogue);
+                    break;
+            case 4:
+            {
+                    int debut;
+                    int fin;
+                    cout << "Choisissez votre intervalle :" << endl;
+                    cin >> debut;
+                    cin >> fin;
+                    loadAll(inFile, monCatalogue, debut, fin);
+                    break;
+            }
+            default:
+                    cout << "Votre choix n'est pas dans les possibilitees." << endl;
+                    break;
         }
-        default:
-                cout << "Votre choix n'est pas dans les possibilitees." << endl;
-                break;
+    }
+    else
+    {
+        cout << "Probleme d'ouverture du fichier" << endl;
     }
 
 }
