@@ -51,6 +51,8 @@ void loadFromFile(Catalogue *monCatalogue)
         cout << "Probleme d'ouverture du fichier" << endl;
     }
 
+    inFile.close();
+
 }
 
 void loadAll(ifstream &inFile, Catalogue * monCatalogue, unsigned int debut, unsigned int fin )
