@@ -1,0 +1,12 @@
+Utilisation :
+
+Créer l'executable :
+make clean
+make
+
+Créer l'executable avec les options de debug (-g, -DMAP) :
+make clean
+make debug
+
+Executer :
+./exec

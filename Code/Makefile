@@ -6,10 +6,10 @@ RMFLAGS=-f
 CPPFLAGS=-Wall -Werror -ansi -pedantic -std=c++11
 DEBUGFLAGS= -DMAP -g
 EDLFLAGS=
-INT=demo.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h saveFunctions.h loadFunctions.h
+INT=menu.h Catalogue.h Trajet.h TrajetSimple.h TrajetCompose.h saveFunctions.h loadFunctions.h
 REAL=$(INT:.h=.cpp)
 OBJ=$(INT:.h=.o)
-EXE=demo
+EXE=exec
 LIBS= #-lpthread ?
 CLEAN=clean
 
@@ -20,7 +20,7 @@ default : $(EXE)
 debug: CPPFLAGS+= $(DEBUGFLAGS)
 debug: $(EXE)
 
-demo.o : demo.cpp
+menu.o : menu.cpp
 Catalogue.o : Catalogue.cpp Catalogue.h
 Trajet.o : Trajet.cpp Trajet.h
 TrajetSimple.o : TrajetSimple.cpp TrajetSimple.h

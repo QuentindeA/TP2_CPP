@@ -1,9 +1,0 @@
-Specification du format de sauvegarde:
-
-s|Lyon|Bordeau|Train
-
-c|2
-s|Lyon|Marseille|Bateau
-s|Marseille|Paris|Avion
-
-s|Lyon|Paris|Avion
