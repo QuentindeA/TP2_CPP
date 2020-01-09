@@ -39,7 +39,7 @@ int main()
 
         cout << "   Reponse : ";
         cin >> answer;
-
+        cin.ignore();
         cout << "------------------------------------" << endl;
 
         switch (answer[0])
@@ -87,38 +87,47 @@ void separator()
 
 void search(Catalogue *monCatalogue)
 {
-    char *startPoint = new char[MAX_LENGTH];
-    char *endPoint = new char[MAX_LENGTH];
+    const char *startPoint;
+    const char *endPoint;
+
+    string start;
+    string end;
 
     cout << "Lieu de depart : ";
-    cin >> startPoint;
+    getline(cin, start);
+    startPoint = start.c_str();
     cout << "Lieu d'arrivee : ";
-    cin >> endPoint;
+    getline(cin, end);
+    endPoint = end.c_str();
 
     monCatalogue->Search(startPoint, endPoint);
 
-    delete[] startPoint;
-    delete[] endPoint;
 }
 
 const TrajetSimple *makeTrajetSimple()
 {
-    char *startPoint = new char[MAX_LENGTH];
-    char *endPoint = new char[MAX_LENGTH];
-    char *mean = new char[MAX_LENGTH];
+    const char *startPoint;
+    const char *endPoint;
+    const char *mean;
 
+    string start;
+    string end;
+    string sMean;
     cout << "Point de depart : ";
-    cin >> startPoint;
+    getline(cin, start);
+    startPoint = start.c_str();
     cout << "Point d'arrive : ";
-    cin >> endPoint;
+    getline(cin, end);
+    endPoint = end.c_str();
     cout << "Moyen de transport : ";
-    cin >> mean;
+    getline(cin, sMean);
+    mean = sMean.c_str();
 
     const TrajetSimple *ts = new const TrajetSimple(startPoint, endPoint, mean);
 
-    delete[] startPoint;
-    delete[] endPoint;
-    delete[] mean;
+    //delete[] startPoint;
+    //delete[] endPoint;
+    //delete[] mean;
 
     return ts;
 }
@@ -130,7 +139,7 @@ const TrajetCompose *makeTrajetCompose()
 
     cout << "Combien de trajet simple dans le trajet compose ?" << endl;
     cin >> nbTrajetSimple;
-
+    cin.ignore();
     const TrajetSimple **mesTrajetsSimples = new const TrajetSimple *[nbTrajetSimple];
 
     for (i = 0; i < nbTrajetSimple; i++)
